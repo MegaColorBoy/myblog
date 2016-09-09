@@ -1,0 +1,29 @@
+This is a TODO list:
+
+'-': incomplete
+'+': completed
+==================
++ header.php
++ header2.php
++ footer.php
++ index.php
++ login.php
++ logout.php
++ users.php (a.k.a view users)
++ add_user.php
++ edit_user.php (only for the ones using it, can't change other users details.)
++ delete_user.php
++ me.php
+=================> all of this for basic user login functionality
+
+- subscribers.php
+- delete-subscriber.php
+- add-subscriber.php (just for test but this feature will be added to the
+client page though.)
+
+- images.php
++ users.php
+- posts.php
+- categories.php
+- feedback.php
+- comments.php
