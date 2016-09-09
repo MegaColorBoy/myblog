@@ -1,2 +1,2 @@
 # myblog
-A simple yet custom built blog engine using PHP and MySQL
+A simple yet custom built personal blog engine using PHP and MySQL
