@@ -36,7 +36,7 @@ if(isset($_POST['submit']))
 	if(!isset($error))
 	{
 		//If you don't want to change your password
-		if($password == "" && $confirmpassword)
+		if($password == "" && $confirmpassword == "")
 		{
 			$result = $handler->update_user2($user_id, $username, $name, $email);
 
@@ -46,7 +46,7 @@ if(isset($_POST['submit']))
 			}
 			else
 			{
-				$handler->print_msg("Your changes are saved!", "me.php");
+				$handler->print_msg("Your changes are saved(2)!", "me.php");
 			}
 		}
 		else

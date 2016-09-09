@@ -150,6 +150,7 @@ class DB_HANDLER
 
 		if($stmt->execute())
 		{
+			$user = array();
 			$row = $this->bind_result_array($stmt);
 
 			if(!$stmt->error)
@@ -178,6 +179,7 @@ class DB_HANDLER
 
 		if($stmt->execute())
 		{
+			$user = array();
 			$row = $this->bind_result_array($stmt);
 
 			if(!$stmt->error)
@@ -206,6 +208,7 @@ class DB_HANDLER
 
 		if($stmt->execute())
 		{
+			$user = array();
 			$row = $this->bind_result_array($stmt);
 
 			if(!$stmt->error)
@@ -226,9 +229,39 @@ class DB_HANDLER
 		}
 	}
 
+	//Get link by link id
+	public function get_link_by_link_id($link_id)
+	{
+		$stmt = $this->conn->prepare("SELECT link_title, link_url FROM links WHERE link_id = ?");
+		$stmt->bind_param("i", $link_id);
+		
+		if($stmt->execute())
+		{
+			$link = array();
+			$row = $this->bind_result_array($stmt);
+
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$link[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $link;
+		}	
+		else
+		{
+			return NULL;
+		}	
+	}
+
 	//Get all users - might be a useful function sometime
 	public function get_all_users()
 	{
+		$users = array();
 		$stmt = $this->conn->prepare("SELECT * FROM users");
 		$stmt->execute();
 		$row = $this->bind_result_array($stmt);
@@ -292,7 +325,60 @@ class DB_HANDLER
 	//----Categories functions----//
 
 	//----Links functions----//
+	//Add a link
+	public function add_link($link_title, $link_url)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO links (link_title, link_url, created_at) VALUES (?,?,NOW())");
+		$stmt->bind_param("ss", $link_title, $link_url);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
 
+	//Edit a link using link id
+	public function update_link($link_id, $link_title, $link_url)
+	{
+		$stmt = $this->conn->prepare("UPDATE links SET link_title = ?, link_url = ?, created_at = NOW() WHERE link_id = ?");
+		$stmt->bind_param("ssi", $link_title, $link_url, $link_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Delete a link using link id
+	public function delete_link($link_id)
+	{
+		$stmt = $this->conn->prepare("DELETE FROM links WHERE link_id = ?");
+		$stmt->bind_param("i", $link_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}	
+
+
+
+	//Get all links
+	public function get_all_links()
+	{
+		$links = array();
+		$stmt = $this->conn->prepare("SELECT * FROM links");
+		$stmt->execute();
+		$row = $this->bind_result_array($stmt);
+
+		if(!$stmt->error)
+		{
+			$counter = 0;
+			while($stmt->fetch())
+			{
+				$links[$counter] = $this->getCopy($row);
+				$counter++;
+			}
+		}
+		$stmt->close();
+		return $links;
+	}
 	//----Links functions----//
 
 	//----Subscriber functions----//
