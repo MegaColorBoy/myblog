@@ -229,35 +229,6 @@ class DB_HANDLER
 		}
 	}
 
-	//Get link by link id
-	public function get_link_by_link_id($link_id)
-	{
-		$stmt = $this->conn->prepare("SELECT link_title, link_url FROM links WHERE link_id = ?");
-		$stmt->bind_param("i", $link_id);
-		
-		if($stmt->execute())
-		{
-			$link = array();
-			$row = $this->bind_result_array($stmt);
-
-			if(!$stmt->error)
-			{
-				$counter = 0;
-				while($stmt->fetch())
-				{
-					$link[$counter] = $this->getCopy($row);
-					$counter++;
-				}
-			}
-			$stmt->close();
-			return $link;
-		}	
-		else
-		{
-			return NULL;
-		}	
-	}
-
 	//Get all users - might be a useful function sometime
 	public function get_all_users()
 	{
@@ -357,7 +328,34 @@ class DB_HANDLER
 		return $num_affected_rows > 0;
 	}	
 
+	//Get link by link id
+	public function get_link_by_link_id($link_id)
+	{
+		$stmt = $this->conn->prepare("SELECT link_title, link_url FROM links WHERE link_id = ?");
+		$stmt->bind_param("i", $link_id);
+		
+		if($stmt->execute())
+		{
+			$link = array();
+			$row = $this->bind_result_array($stmt);
 
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$link[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $link;
+		}	
+		else
+		{
+			return NULL;
+		}	
+	}
 
 	//Get all links
 	public function get_all_links()

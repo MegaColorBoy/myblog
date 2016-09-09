@@ -21,6 +21,11 @@ This is a TODO list:
 - add-subscriber.php (just for test but this feature will be added to the
 client page though.)
 
++ links.php
++ add-link.php
++ edit-link.php
++ delete-link.php
+
 - images.php
 + users.php
 - posts.php
