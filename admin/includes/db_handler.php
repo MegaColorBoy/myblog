@@ -61,10 +61,34 @@ class DB_HANDLER
 				window.location.replace('".$redirect."');
 			</script>";
 	}
+
+	//Create slug
+	function gen_slug($text)
+	{
+		//replace non letter or digits by -
+		$text = preg_replace('~[^pLd]+~u','-',$text);
+
+		//trim
+		$text = trim($text,'-');
+
+		//transliterate
+		$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+		//lowercase
+		$text = strtolower($text);
+
+		//remove unwanted chars
+		$text = preg_replace('~[^-w]+~','',$text);
+
+		if($empty)
+		{
+			return 'n-a';
+		}
+		return $text;
+	}
 	//----Utility Functions----//
 
 	//----Admin-User Functions----//
-
 	//Create user
 	public function add_user($username, $password, $name, $email)
 	{
@@ -284,7 +308,6 @@ class DB_HANDLER
 		$stmt->close();
 		return $num_affected_rows;
 	}
-
 	//----Admin-User Functions----//
 
 	//----Blogpost functions----//
@@ -292,7 +315,66 @@ class DB_HANDLER
 	//----Blogpost functions----//
 
 	//----Categories functions----//
+	//Add category
+	public function add_category($cat_title, $cat_slug)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO categories (cat_title, cat_slug, cat_date) VALUES (?,?,NOW())");
+		$stmt->bind_param("ss", $cat_title, $cat_slug);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
 
+	//Edit category
+	public function edit_category($cat_id, $cat_title, $cat_slug)
+	{
+		$stmt = $this->conn->prepare("UPDATE categories SET cat_title = ?, cat_slug = ?, cat_date = NOW() WHERE cat_id = ?");
+		$stmt->bind_param("ssi", $cat_title, $cat_slug, $cat_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Delete category
+	public function delete_category($cat_id)
+	{
+		$stmt = $this->conn->prepare("DELETE FROM categories WHERE cat_id = ?");
+		$stmt->bind_param("i", $cat_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Get category by category id
+	public function get_cat_by_cat_id($cat_id)
+	{
+		$stmt = $this->conn->prepare("SELECT cat_title, cat_slug FROM categories WHERE cat_id = ?");
+		$stmt->bind_param("i", $cat_id);
+
+		if($stmt->execute())
+		{
+			$category = array();
+			$row = $this->bind_result_array($stmt);
+
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$category[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $category;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
 	//----Categories functions----//
 
 	//----Links functions----//
