@@ -27,10 +27,10 @@ client page though.)
 	+ delete-link.php
 
 - images.php
-	- add-image.php
+	+ add-image.php
 	- edit-image.php
-	- delete-image.php
-	- download-image.php (not for me but very useful if I want to download an image from a URL and store it on my DB)
+	+ delete-image.php
+	+ download-image.php (not for me but very useful if I want to download an image from a URL and store it on my DB)
 
 + users.php
 	+ add-user.php
