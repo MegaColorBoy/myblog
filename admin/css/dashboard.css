@@ -105,14 +105,49 @@ body {
 }
 
 /*
+ * Image preview
+ */
+#img_preview
+{
+  width: 180px;
+  height: 180px;
+  background-position: center center;
+  background-size: cover;
+  display: inline-block;
+}
+/*
  * For Search bar in the table
  */
-
 #search_bar
 {
+  background-image: url('../../images/search-icon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
   width: 100%;
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
+}
+
+/*
+ * For Modals
+ */
+.modal
+{
+  position: fixed;
+  right: 0;
+  top: 40px;
+}
+
+.modal-header
+{
+  background: #2c3e50;
+  color: #FFF;
+}
+
+.modal-body
+{
+  background: #34495e;
+  color: #FFF;
 }

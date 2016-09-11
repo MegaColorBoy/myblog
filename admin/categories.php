@@ -36,7 +36,7 @@ $categories = $handler->get_all_categories();
 	    			<th>Category ID</th>
 	    			<th>Category title</th>
 	    			<th>Category slug</th>
-	    			<th>Created At</th>
+	    			<th>Created at</th>
 	    			<th>Action</th>
     			</tr>
     			<tbody>

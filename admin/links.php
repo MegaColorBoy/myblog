@@ -28,7 +28,7 @@ $links = $handler->get_all_links();
     <h1 class="page-header">Manage links</h1>
 
     <!-- search bar -->
-    <input type="text" id="search_bar" onkeyup="searchTable()" placeholder="Search for links..."/>
+    <input type="text" id="search_bar" onkeyup="searchTable()" placeholder="Search for link..."/>
     <div class="table-responsive">
     	<table class="table table-striped" id="collapse_table">
     		<thead>
@@ -36,7 +36,7 @@ $links = $handler->get_all_links();
 	    			<th>Link ID</th>
 	    			<th>Link title</th>
 	    			<th>Link URL</th>
-	    			<th>Created At</th>
+	    			<th>Created at</th>
 	    			<th>Action</th>
     			</tr>
     			<tbody>

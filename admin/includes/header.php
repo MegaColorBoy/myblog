@@ -73,14 +73,14 @@ if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'])
           <ul class="nav nav-sidebar">
             <?php
               echo '<li><a href="subscribers.php"><span class="glyphicon glyphicon-user"></span> Subscribers</a></li>';
+              echo '<li><a href="comments.php"><span class="glyphicon glyphicon-comment"></span> Comments</a></li>';
               echo '<li><a href="feedback.php"><span class="glyphicon glyphicon-envelope"></span> Feedback/Messages</a></li>';
-              echo '<li><a href="images.php"><span class="glyphicon glyphicon-picture"></span> Images</a></li>';
             ?>
           </ul>
           <ul class="nav nav-sidebar">
             <?php
               echo '<li><a href="links.php"><span class="glyphicon glyphicon-link"></span> Links</a></li>';
-              echo '<li><a href="comments.php"><span class="glyphicon glyphicon-comment"></span> Comments</a></li>';
+              echo '<li><a href="images.php"><span class="glyphicon glyphicon-picture"></span> Images</a></li>';
               echo '<li><a href="users.php"><span class="glyphicon glyphicon-sunglasses"></span> Users (Admin)</a></li>';
             ?>
           </ul>

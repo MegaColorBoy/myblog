@@ -25,7 +25,7 @@
 <script>
 	//for image uploading
 	$(function(){
-		$("#uploadFile").on("change", function(){
+		$("#upload_file").on("change", function(){
 			var files = !!this.files ? this.files : [];
 
 			if(!files.length || !window.FileReader){return;}
@@ -36,7 +36,7 @@
 				reader.readAsDataURL(files[0]);
 				reader.onloadend = function()
 				{
-					$("#imgpreview").css("background-image", "url("+this.result+")");
+					$("#img_preview").css("background-image", "url("+this.result+")");
 				}
 			}
 		});

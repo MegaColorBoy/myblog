@@ -37,7 +37,7 @@ $users = $handler->get_all_users();
 	    			<th>Username</th>
 	    			<th>Name</th>
 	    			<th>Email</th>
-	    			<th>Created At</th>
+	    			<th>Created at</th>
 	    			<th>Action</th>
     			</tr>
     			<tbody>

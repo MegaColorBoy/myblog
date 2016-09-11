@@ -1,5 +1,4 @@
 <?php
-
 //This contains all the functions for the CMS
 class DB_HANDLER
 {
@@ -483,7 +482,121 @@ class DB_HANDLER
 	//----Subscriber functions----//
 
 	//----Images functions----//
+	//Add Image
+	public function add_image($img_name, $img_type, $img_path)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO images (img_name, img_type, img_path, uploaded_at) VALUES (?,?,?,NOW())");
+		$stmt->bind_param("sss", $img_name, $img_type, $img_path);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
 
+	//Edit Image - just name only
+	public function edit_image($img_id, $img_name)
+	{
+		$stmt = $this->conn->prepare("UPDATE images SET img_name = ? WHERE img_id = ?");
+		$stmt->bind_param("si", $img_name, $img_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Delete Image
+	public function delete_image($img_id)
+	{
+		//Delete it from the directory before removing from the DB
+		$path = $this->get_img_dir($img_id);
+		unlink($path['img_path']);
+
+		$stmt = $this->conn->prepare("DELETE FROM images WHERE img_id = ?");
+		$stmt->bind_param("i", $img_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Download Image from URL (e.g: from any website)
+	//This also add the imagepath into the DB
+	public function download_image_from_url($img_name, $img_type, $img_url)
+	{
+		$img_name = str_replace(" ","",$img_name);
+		$raw_image = file_get_contents($img_url);
+		$img_path = "../images/".$img_name.$img_type;
+		file_put_contents($img_path,$raw_image);
+
+		// this is where you add the img to the db
+		$result = $this->add_image($img_name.$img_type, $img_type, $img_path);
+		return $result;
+	}
+
+	//Get image by img_id
+	public function get_image_by_id($img_id)
+	{
+		$stmt = $this->conn->prepare("SELECT * FROM images WHERE img_id = ?");
+		$stmt->bind_param("i", $img_id);
+		
+		if($stmt->execute())
+		{
+			$image = array();
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$image[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $image;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	//Get all images
+	public function get_all_images()
+	{
+		$images = array();
+		$stmt = $this->conn->prepare("SELECT * FROM images");
+		$stmt->execute();
+		$row = $this->bind_result_array($stmt);
+
+		if(!$stmt->error)
+		{
+			$counter = 0;
+			while($stmt->fetch())
+			{
+				$images[$counter] = $this->getCopy($row);
+				$counter++;
+			}
+		}
+		$stmt->close();
+		return $images;
+	}
+
+	//Get image directory by img_id
+	public function get_img_dir($img_id)
+	{
+		$stmt = $this->conn->prepare("SELECT img_path FROM images WHERE img_id = ?");
+		$stmt->bind_param("i", $img_id);
+
+		if($stmt->execute())
+		{
+			$path = $stmt->get_result()->fetch_assoc();
+			$stmt->close();
+			return $path;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
 	//----Images functions----//
 
 	//----Comments functions----//

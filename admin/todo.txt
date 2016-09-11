@@ -50,3 +50,13 @@ client page though.)
 
 - feedback.php
 - comments.php
+
+
+ame in /Applications/XAMPP/xamppfiles/htdocs/my_blog/admin/images.php on line 30
+
+Notice: Undefined variable: img_url in /Applications/XAMPP/xamppfiles/htdocs/my_blog/admin/images.php on line 31
+
+Notice: Undefined variable: img_type in /Applications/XAMPP/xamppfiles/htdocs/my_blog/admin/images.php on line 32
+
+Fatal error: Call to undefined function replace() in /Applications/XAMPP/xamppfiles/htdocs/my_blog/admin/includes/db_handler.php on line 522
+
