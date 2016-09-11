@@ -26,8 +26,11 @@ $users = $handler->get_all_users();
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Manage users</h1>
+
+    <!-- search bar -->
+    <input type="text" id="search_bar" onkeyup="searchTable()" placeholder="Search for user..."/>
     <div class="table-responsive">
-    	<table class="table table-striped">
+    	<table class="table table-striped" id="collapse_table">
     		<thead>
     			<tr>
 	    			<th>User ID</th>

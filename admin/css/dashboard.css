@@ -103,3 +103,16 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+/*
+ * For Search bar in the table
+ */
+
+#search_bar
+{
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
