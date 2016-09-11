@@ -82,6 +82,10 @@ if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'])
               echo '<li><a href="links.php"><span class="glyphicon glyphicon-link"></span> Links</a></li>';
               echo '<li><a href="comments.php"><span class="glyphicon glyphicon-comment"></span> Comments</a></li>';
               echo '<li><a href="users.php"><span class="glyphicon glyphicon-sunglasses"></span> Users (Admin)</a></li>';
+            ?>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <?php
               echo '<li><a href="../index.php"><span class="glyphicon glyphicon-globe"></span> View website</a></li>';
               }
             ?>

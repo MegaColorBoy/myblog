@@ -22,13 +22,26 @@ This is a TODO list:
 client page though.)
 
 + links.php
-+ add-link.php
-+ edit-link.php
-+ delete-link.php
+	+ add-link.php
+	+ edit-link.php
+	+ delete-link.php
 
 - images.php
+	- add-image.php
+	- edit-image.php
+	- delete-image.php
+
 + users.php
+	+ add-user.php
+	+ edit-user.php
+	+ delete-user.php
+
 - posts.php
-- categories.php
+
++ categories.php
+	+ add-category.php
+	+ edit-category.php
+	+ delete-category.php
+
 - feedback.php
 - comments.php

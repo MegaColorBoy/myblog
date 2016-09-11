@@ -62,29 +62,25 @@ class DB_HANDLER
 			</script>";
 	}
 
-	//Create slug
-	function gen_slug($text)
+	//Create slug for URLs
+	//Rewrite in .htaccess to display SEO URLs instead
+	function gen_slug($url)
 	{
-		//replace non letter or digits by -
-		$text = preg_replace('~[^pLd]+~u','-',$text);
+		//prepare string with basic normalization
+		$url = strtolower($url);
+		$url = strip_tags($url);
+		$url = stripslashes($url);
+		$url = html_entity_decode($url);
 
-		//trim
-		$text = trim($text,'-');
+		//Remove any quotes
+		$url = str_replace('\"','',$url);
 
-		//transliterate
-		$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-		//lowercase
-		$text = strtolower($text);
-
-		//remove unwanted chars
-		$text = preg_replace('~[^-w]+~','',$text);
-
-		if($empty)
-		{
-			return 'n-a';
-		}
-		return $text;
+		//Replace non-alpha chars with '-'
+		$match = '/[^a-z0-9]+/';
+		$replace = '-';
+		$url = preg_replace($match, $replace, $url);
+		$url = trim($url, '-');
+		return $url;
 	}
 	//----Utility Functions----//
 
@@ -326,7 +322,7 @@ class DB_HANDLER
 	}
 
 	//Edit category
-	public function edit_category($cat_id, $cat_title, $cat_slug)
+	public function update_category($cat_id, $cat_title, $cat_slug)
 	{
 		$stmt = $this->conn->prepare("UPDATE categories SET cat_title = ?, cat_slug = ?, cat_date = NOW() WHERE cat_id = ?");
 		$stmt->bind_param("ssi", $cat_title, $cat_slug, $cat_id);
@@ -374,6 +370,27 @@ class DB_HANDLER
 		{
 			return NULL;
 		}
+	}
+
+	//Get all categories
+	public function get_all_categories()
+	{
+		$categories = array();
+		$stmt = $this->conn->prepare("SELECT * FROM categories");
+		$stmt->execute();
+		$row = $this->bind_result_array($stmt);
+
+		if(!$stmt->error)
+		{
+			$counter = 0;
+			while($stmt->fetch())
+			{
+				$categories[$counter] = $this->getCopy($row);
+				$counter++;
+			}
+		}
+		$stmt->close();
+		return $categories;
 	}
 	//----Categories functions----//
 
