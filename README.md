@@ -9,7 +9,6 @@
   * Blog posts
   * Categories
   * Personal links
-  * Images
   * Subscribers
   * Users (Admin only for now)
   * Messages/Feedback (This will contain a mailing system)
