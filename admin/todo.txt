@@ -16,13 +16,13 @@ This is a TODO list:
 + me.php
 =================> all of this for basic user login functionality
 
-- subscribers.php
-	- delete-subscriber.php
-	- add-subscriber.php (just for test but this feature will be added to the
++ subscribers.php
+	+ delete-subscriber.php
+	+ add-subscriber.php (just for test but this feature will be added to the
 client page though.)
 	- send-mail.php
 
-- mail.php (class)
++ mail.php (class)
 
 - mail_templates.php (class)
 
@@ -58,6 +58,6 @@ client page though.)
 	- delete-feedback.php
 	- message-read.php
 
-- comments.php
-	- add-comments.php
+- comments.php (will be implemented after posts.php)
+	- add-comments.php (for client side, can be built for testing purposes also)
  	- delete-comments.php
