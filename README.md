@@ -18,6 +18,6 @@
 2. Main index page to display all archives, categories, posts and comments.
 
 # Purpose of this project
-  * I wanted to start my own technical blog that focuses on my favorite areas of Mathematics, Computer Science and Art.
+  * I wanted to start my own personal technical blog that focuses on my favorite topics: Mathematics, Computer Science (Programming and Theory) and Art.
   * Although, I'm familiar with Wordpress and it's plugins, I decided to build this one from scratch for fun :) !
 
