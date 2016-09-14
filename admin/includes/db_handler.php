@@ -478,14 +478,94 @@ class DB_HANDLER
 	//----Links functions----//
 
 	//----Subscriber functions----//
-	
+	//Add subscriber - for test only
+	public function add_subscriber($sub_name, $sub_email)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO subscribers (sub_name, sub_email, sub_date_joined) VALUES (?,?,NOW())");
+		$stmt->bind_param("ss", $sub_name, $sub_email);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
+
+	//Check for duplicate subscriber
+	public function check_duplicate_subscriber($sub_email)
+	{
+		$stmt = $this->conn->prepare("SELECT * FROM subscribers WHERE sub_email = ?");
+		$stmt->bind_param("s", $sub_email);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Delete subscriber by sub_id
+	public function delete_subscriber($sub_id)
+	{
+		$stmt = $this->conn->prepare("DELETE FROM subscribers WHERE sub_id = ?");
+		$stmt->bind_param("i", $sub_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Get subscriber
+	public function get_subscriber_by_id($sub_id)
+	{
+		$stmt = $this->conn->prepare("SELECT sub_name, sub_email, sub_date_joined FROM subscribers WHERE sub_id = ?");
+		$stmt->bind_param("i", $sub_id);
+
+		if($stmt->execute())
+		{
+			$subscriber = array();
+			$row = $this->bind_result_array($stmt);
+			if(!$stmt->error())
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$subscriber[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $subscriber;
+		}	
+		else
+		{
+			return NULL;
+		}
+	}
+
+	//Get all subscribers
+	public function get_all_subscribers()
+	{
+		$subscribers = array();
+		$stmt = $this->conn->prepare("SELECT * FROM subscribers");
+		$stmt->execute();
+		$row = $this->bind_result_array($stmt);
+
+		if(!$stmt->error)
+		{
+			$counter = 0;
+			while($stmt->fetch())
+			{
+				$subscribers[$counter] = $this->getCopy($row);
+				$counter++;
+			}
+		}
+		$stmt->close();
+		return $subscribers;
+	}
+
 	//----Subscriber functions----//
 
 	//----Images functions----//
 	//Add Image
 	/*
 		Note: If you're using the XAMPP/LAMPP stack, please change the "images" folder
-		permission to Read and Write for "Others" or "Everyone"
+		permission to Read and Write for "Others"(linux) or "Everyone"(mac osx)
 		Otherwise, the image won't be added to the folder
 	*/
 	public function add_image($img_name, $img_type, $img_path)

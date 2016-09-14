@@ -95,7 +95,7 @@ if(isset($_POST['img_submit']))
     						?>
     						<td>
     							<a class="btn btn-danger btn-block" href="delete-image.php?id=<?php echo $images[$counter]['img_id'];?>"
-    								onclick="return confirm('Are you sure you want to delete this link ?');">Delete</a>
+    								onclick="return confirm('Are you sure you want to delete this image ?');">Delete</a>
     						</td>
     						<?php
     						echo '</tr>';

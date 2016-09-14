@@ -20,6 +20,7 @@ This is a TODO list:
 	- delete-subscriber.php
 	- add-subscriber.php (just for test but this feature will be added to the
 client page though.)
+	- send-mail.php
 
 - mail.php (class)
 
@@ -53,6 +54,9 @@ client page though.)
 	+ delete-category.php
 
 - feedback.php
+	- reply-feedback.php
+	- delete-feedback.php
+	- message-read.php
 
 - comments.php
 	- add-comments.php
