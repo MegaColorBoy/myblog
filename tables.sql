@@ -102,8 +102,9 @@ CREATE TABLE IF NOT EXISTS comments
 (
 	cmt_id int unsigned NOT NULL auto_increment,
 	bp_id int unsigned NOT NULL,
-	cmt_name varchar(255) NOT NULL, #commenter's name
-	cmt_content TEXT NOT NULL,
+	cmt_username varchar(255) NOT NULL, #commenter's name
+	cmt_email varchar(255) NOT NULL, #commenter's email
+	cmt_content TEXT NOT NULL, #commenter's comments
 	posted_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
 	PRIMARY KEY(cmt_id),

@@ -94,11 +94,8 @@ if(isset($_POST['img_submit']))
     						echo '<td>'.$images[$counter]['uploaded_at'].'</td>';
     						?>
     						<td>
-    							<a class="btn btn-primary btn-block" href="edit-image.php?id=<?php echo $images[$counter]['img_id'];?>">
-    								Edit</a>
     							<a class="btn btn-danger btn-block" href="delete-image.php?id=<?php echo $images[$counter]['img_id'];?>"
     								onclick="return confirm('Are you sure you want to delete this link ?');">Delete</a>
-
     						</td>
     						<?php
     						echo '</tr>';

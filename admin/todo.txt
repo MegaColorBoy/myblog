@@ -17,9 +17,13 @@ This is a TODO list:
 =================> all of this for basic user login functionality
 
 - subscribers.php
-- delete-subscriber.php
-- add-subscriber.php (just for test but this feature will be added to the
+	- delete-subscriber.php
+	- add-subscriber.php (just for test but this feature will be added to the
 client page though.)
+
+- mail.php (class)
+
+- mail_templates.php (class)
 
 + links.php
 	+ add-link.php
@@ -27,10 +31,10 @@ client page though.)
 	+ delete-link.php
 
 - images.php
-	+ add-image.php
-	- edit-image.php
+	+ add-image.php (created this functionality as a Modal within images.php)
 	+ delete-image.php
-	+ download-image.php (not for me but very useful if I want to download an image from a URL and store it on my DB)
+	+ download-image.php (not for me but very useful if I want to download an image from a URL and store it on my DB) -> Created as a modal within
+	images.php
 
 + users.php
 	+ add-user.php
@@ -49,5 +53,7 @@ client page though.)
 	+ delete-category.php
 
 - feedback.php
-- comments.php
 
+- comments.php
+	- add-comments.php
+ 	- delete-comments.php

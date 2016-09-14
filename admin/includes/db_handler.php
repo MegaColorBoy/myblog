@@ -483,6 +483,11 @@ class DB_HANDLER
 
 	//----Images functions----//
 	//Add Image
+	/*
+		Note: If you're using the XAMPP/LAMPP stack, please change the "images" folder
+		permission to Read and Write for "Others" or "Everyone"
+		Otherwise, the image won't be added to the folder
+	*/
 	public function add_image($img_name, $img_type, $img_path)
 	{
 		$stmt = $this->conn->prepare("INSERT INTO images (img_name, img_type, img_path, uploaded_at) VALUES (?,?,?,NOW())");
