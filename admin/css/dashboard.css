@@ -130,6 +130,13 @@ body {
   margin-bottom: 12px;
 }
 
+/* For the textarea in send-mail.php */
+.contact-form { margin-top:15px; }
+.contact-form .textarea { min-height: 220px; resize: none; }
+.form-control { box-shadow:none; border-color:#eee; height:49px; }
+.form-control:focus { box-shadow: none; border-color:#00b09c; }
+
+
 /*
  * For Modals
  */

@@ -73,4 +73,11 @@
 	}
 </script>
 
+<script>
+//For send mail modal in subscribers.php
+$('.send_btn').click(function(){
+	$('#send_mail_modal').modal('show');
+});
+</script>
+
 </html>

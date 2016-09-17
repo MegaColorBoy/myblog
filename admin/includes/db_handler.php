@@ -520,7 +520,7 @@ class DB_HANDLER
 		{
 			$subscriber = array();
 			$row = $this->bind_result_array($stmt);
-			if(!$stmt->error())
+			if(!$stmt->error)
 			{
 				$counter = 0;
 				while($stmt->fetch())

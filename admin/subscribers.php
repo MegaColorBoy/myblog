@@ -103,8 +103,8 @@ if(isset($_POST['add_sub_submit']))
     						echo '<td>'.$subscribers[$counter]['sub_date_joined'].'</td>';
     						?>
     						<td>
-    							<a class="btn btn-primary btn-block" href="#send_mail_modal" data-id="<?php echo $subscribers[$counter]['sub_id'];?>" 
-    								role="button" data-toggle="modal">Send mail</a>
+    							<a class="send_btn btn btn-primary btn-block" href="send-mail.php?id=<?php echo $subscribers[$counter]['sub_id'];?>" 
+    								role="button">Send mail</a>
     							<a class="btn btn-danger btn-block" href="delete-subscriber.php?id=<?php echo $subscribers[$counter]['sub_id'];?>"
     								onclick="return confirm('Are you sure you want to delete this subscriber ?');">Delete</a>
     						</td>
@@ -118,7 +118,7 @@ if(isset($_POST['add_sub_submit']))
     	</table>
     	<!--Test only -->
     	<a href="#add_sub_modal" role="button" data-toggle="modal" class="btn btn-primary btn-md">Add subscriber</a>
-    	<a href="#send_mail_all_modal" role="button" data-toggle="modal" class="btn btn-primary btn-md">Send mail to all</a>
+    	<a href="send-mail-to-all.php" role="button" class="btn btn-primary btn-md">Send mail to all</a>
     </div>
 </div>
 
@@ -165,15 +165,6 @@ if(isset($_POST['add_sub_submit']))
 	</div>
 </div>
 <!-- -->
-
-<!-- Modal for sending a mail -->
-
-<!-- -->
-
-<!-- Modal for sending mail to all subscribers -->
-
-<!-- -->
-
 
 <?php
 include_once('includes/footer.php');

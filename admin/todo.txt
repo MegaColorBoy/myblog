@@ -21,6 +21,7 @@ This is a TODO list:
 	+ add-subscriber.php (just for test but this feature will be added to the
 client page though.)
 	- send-mail.php
+	- send-mail-to-all.php
 
 + mail.php (class)
 
