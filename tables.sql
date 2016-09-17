@@ -38,16 +38,14 @@ CREATE TABLE IF NOT EXISTS categories
 
 #related posts
 #to store all the blogposts that are relevant
-#to each category. eg: crpto posts would be in the "crypto" category
+#to each category. eg: crypto posts would be in the "crypto" category
 CREATE TABLE IF NOT EXISTS bp_cats
 (
 	bp_cats_id int unsigned NOT NULL auto_increment,
 	bp_id  int unsigned NOT NULL,
 	cat_id int unsigned NOT NULL,
 
-	PRIMARY KEY(bp_cats_id),
-	FOREIGN KEY(bp_id) REFERENCES blog_posts(bp_id),
-	FOREIGN KEY(cat_id) REFERENCES categories(cat_id)
+	PRIMARY KEY(bp_cats_id)
 );
 
 #subscribers

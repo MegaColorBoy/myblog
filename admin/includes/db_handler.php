@@ -285,7 +285,7 @@ class DB_HANDLER
 	//Edit/Update user details -- without password changes
 	public function update_user2($user_id, $username, $name, $email)
 	{
-		$stmt = $this->conn->prepare("UPDATE users SET username = ?, name = ?, email = ? WHERE user_id = ?");
+		$stmt = $this->conn->prepare("UPDATE users SET username = ?, name = ?, email = ?, created_at = NOW() WHERE user_id = ?");
 		$stmt->bind_param("sssi", $username, $name, $email, $user_id);
 		$stmt->execute();
 		$num_affected_rows = $stmt->affected_rows;
@@ -301,12 +301,140 @@ class DB_HANDLER
 		$stmt->execute();
 		$num_affected_rows = $stmt->affected_rows;
 		$stmt->close();
-		return $num_affected_rows;
+		return $num_affected_rows > 0;
 	}
 	//----Admin-User Functions----//
 
 	//----Blogpost functions----//
-	
+	//Add post
+	public function add_post($bp_title, $bp_slug, $bp_desc, $bp_cont)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO blog_posts (bp_title, bp_slug, bp_desc, bp_cont, bp_date) VALUES (?,?,?,?,NOW())");
+		$stmt->bind_param("ssss", $bp_title, $bp_slug, $bp_desc, $bp_cont);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
+
+	//Add related post by blog post id and category id
+	public function add_related_post($bp_id, $cat_id)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO bp_cats (bp_id, cat_id) VALUES (?,?)");
+		$stmt->bind_param("ii", $bp_id, $cat_id);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
+
+	//Edit post
+	public function update_post($bp_id, $bp_title, $bp_slug, $bp_desc, $bp_cont)
+	{
+		$stmt = $this->conn->prepare("UPDATE blog_posts SET bp_title = ?, bp_slug = ?, bp_desc = ?, bp_cont = ?, bp_date = NOW() WHERE bp_id = ?");
+		$stmt->bind_param("ssssi", $bp_title, $bp_slug, $bp_desc, $bp_cont, $bp_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Delete post by id
+	public function delete_post($bp_id)
+	{
+		$stmt = $this->conn->prepare("DELETE FROM blog_posts WHERE bp_id = ?");
+		$stmt->bind_param("i", $bp_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Delete related post
+	public function delete_related_post($bp_id)
+	{
+		$stmt = $this->conn->prepare("DELETE FROM bp_cats WHERE bp_id = ?");
+		$stmt->bind_param("i", $bp_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Get post by id
+	public function get_post_by_id($bp_id)
+	{
+		$stmt = $this->conn->prepare("SELECT bp_title, bp_slug, bp_desc, bp_cont, bp_date FROM blog_posts WHERE bp_id = ?");
+		$stmt->bind_param("i", $bp_id);
+		if($stmt->execute())
+		{
+			$post = array();
+			$row = $this->bind_result_array($stmt);
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$post[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $post;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	//Get post id by post slug
+	public function get_post_id($bp_slug)
+	{
+		$stmt = $this->conn->prepare("SELECT bp_id FROM blog_posts WHERE bp_slug = ?");
+		$stmt->bind_param("s", $bp_slug);
+		if($stmt->execute())
+		{
+			$post_id = array();
+			$row = $this->bind_result_array($stmt);
+
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$post_id[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+				$stmt->close();
+				return $post_id;
+			}
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	//Get all posts
+	//Note: Must write new query to display category as well
+	public function get_all_posts()
+	{
+		$posts = array();
+		$stmt = $this->conn->prepare("SELECT * FROM blog_posts");
+		$stmt->execute();
+		$row = $this->bind_result_array($stmt);
+
+		if(!$stmt->error)
+		{
+			$counter = 0;
+			while($stmt->fetch())
+			{
+				$posts[$counter] = $this->getCopy($row);
+				$counter++;
+			}
+		}
+		$stmt->close();
+		return $posts;
+	}
 	//----Blogpost functions----//
 
 	//----Categories functions----//
@@ -364,6 +492,64 @@ class DB_HANDLER
 			}
 			$stmt->close();
 			return $category;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	//get category id by category
+	public function get_cat_id($cat_title)
+	{
+		$stmt = $this->conn->prepare("SELECT cat_id FROM categories WHERE cat_title = ?");
+		$stmt->bind_param("s", $cat_title);
+
+		if($stmt->execute())
+		{
+			$cat_id = array();
+			$row = $this->bind_result_array($stmt);
+
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$cat_id[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $cat_id;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	//get category id by bp_id
+	public function get_cat_id_by_bp_id($bp_id)
+	{
+		$stmt = $this->conn->prepare("SELECT cat_id FROM bp_cats WHERE bp_id = ?");
+		$stmt->bind_param("i", $bp_id);
+
+		if($stmt->execute())
+		{
+			$cat_id = array();
+			$row = $this->bind_result_array($stmt);
+
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$cat_id[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $cat_id;
 		}
 		else
 		{

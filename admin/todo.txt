@@ -32,7 +32,7 @@ client page though.)
 	+ edit-link.php
 	+ delete-link.php
 
-- images.php
++ images.php
 	+ add-image.php (created this functionality as a Modal within images.php)
 	+ delete-image.php
 	+ download-image.php (not for me but very useful if I want to download an image from a URL and store it on my DB) -> Created as a modal within
@@ -43,10 +43,10 @@ client page though.)
 	+ edit-user.php
 	+ delete-user.php
 
-- posts.php
- 	- add-post.php
++ posts.php
+ 	+ add-post.php
  	- edit-post.php
- 	- delete-post.php
+ 	+ delete-post.php
  	- preview-post.php (only for the CMS)
 
 + categories.php
