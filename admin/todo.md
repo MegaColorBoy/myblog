@@ -4,7 +4,7 @@
 [ ]: completed
 
 # For basic user functionality:
-- [x] header.php
+-[x] header.php
 - [x] header2.php
 - [x] footer.php
 - [x] index.php
