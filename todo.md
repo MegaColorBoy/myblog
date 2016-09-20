@@ -1,4 +1,5 @@
 # To-do list
+### This is to keep track of my progress
 
 > - [x] incomplete
 > - [ ] completed
