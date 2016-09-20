@@ -3,7 +3,7 @@
 > - [x] incomplete
 > - [ ] completed
 
-# For basic user functionality:
+# Basic user functionality:
 - [x] header.php
 - [x] header2.php
 - [x] footer.php
@@ -16,7 +16,7 @@
 - [x] delete_user.php
 - [x] me.php
 
-# For subscribers:
+# Subscribers:
 - [x] subscribers.php
 - [x] delete-subscriber.php
 - [x] add-subscriber.php (just for test but this feature will be added to the
@@ -24,48 +24,48 @@ client page though.)
 - [ ] send-mail.php
 - [ ] send-mail-to-all.php
 
-# For mail class:
+# Mail class:
 - [x] mail.php (class)
 - [ ] mail_templates.php (class)
 
-# For links:
+# Links:
 - [x] links.php
 - [x] add-link.php
 - [x] edit-link.php
 - [x] delete-link.php
 
-# For images:
+# Images:
 - [x] images.php
 - [x] add-image.php (created this functionality as a Modal within images.php)
 - [x] delete-image.php
 - [x] download-image.php (not for me but very useful if I want to download an image from a URL and store it on my DB) -> Created as a modal within
 	images.php
 
-# For users:
+# Users:
 - [x] users.php
 - [x] add-user.php
 - [x] edit-user.php
 - [x] delete-user.php
 
-# For posts:
+# Posts:
 - [x] posts.php
 - [x] add-post.php
 - [x] edit-post.php
 - [x] delete-post.php
 
-# For categories:
+# Categories:
 - [x] categories.php
 - [x] add-category.php
 - [x] edit-category.php
 - [x] delete-category.php
 
-# For feedback:
+# Feedback:
 - [ ] feedback.php
 - [ ] reply-feedback.php
 - [ ] delete-feedback.php
 - [ ] message-read.php
 
-# For comments:
+# Comments:
 - [ ] comments.php (will be implemented after posts.php)
 - [ ] add-comments.php (for client side, can be built for testing purposes also)
 - [ ] delete-comments.php
