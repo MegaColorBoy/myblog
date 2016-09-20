@@ -6,9 +6,9 @@
 # For basic user functionality:
 - [x] header.php
 - [x] header2.php
-- [x]footer.php
-- [x]index.php
-- [x]login.php
+- [x] footer.php
+- [x] index.php
+- [x] login.php
 - [x] logout.php
 - [x] users.php (a.k.a view users)
 - [x] add_user.php
