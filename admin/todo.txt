@@ -45,9 +45,8 @@ client page though.)
 
 + posts.php
  	+ add-post.php
- 	- edit-post.php
+ 	+ edit-post.php
  	+ delete-post.php
- 	- preview-post.php (only for the CMS)
 
 + categories.php
 	+ add-category.php
