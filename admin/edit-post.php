@@ -43,15 +43,27 @@ if(isset($_POST['submit']))
 		$post_slug = $handler->gen_slug($post_title);
 		$result = $handler->update_post($post_id_edit, $post_title, $post_slug, $post_desc, $post_cont);
 
-		//TODO: add code to edit category as well
-
-		if(!$result)
+		if($result)
 		{
-			echo "Error: " . mysqli_error();
+			//Edit post category in bp_cats as well(if any changes are made)
+			$new_cat_id = $handler->get_cat_id($post_cat);
+			$res = $handler->update_related_post($post_id_edit, $new_cat_id[0]['cat_id']);
+			if($res)
+			{
+				$handler->print_msg("Your changes are saved!", "posts.php");
+			}
+			else
+			{
+				$handler->print_msg("Your changes are saved!", "posts.php");
+				//$handler->print_msg($new_cat_id[0]['cat_id'], "posts.php");
+				//echo "Error(2): " . mysqli_error();
+			}
+
 		}
+		//$handler->print_msg("Your changes are saved!", "posts.php");
 		else
 		{
-			$handler->print_msg("Your changes are saved!", "posts.php");
+			echo "Error(1): " . mysqli_error();
 		}
 	}
 

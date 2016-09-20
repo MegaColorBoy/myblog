@@ -46,11 +46,11 @@ if(isset($_POST['submit']))
 			
 			if($res)
 			{
-			$handler->print_msg("Post added successfully", "posts.php");
+				$handler->print_msg("Post added successfully", "posts.php");
 			}
 			else
 			{
-			$handler->print_msg("Unknown error. Please try again later.", "add-post.php");
+				$handler->print_msg("Unknown error. Please try again later.", "add-post.php");
 
 			}
 			//$handler->print_msg("BP: " . $bp_id[0]['bp_id'] . " CAT: " . $cat_id[0]['cat_id'], "posts.php");

@@ -337,6 +337,17 @@ class DB_HANDLER
 		return $num_affected_rows > 0;
 	}
 
+	//Update related post category
+	public function update_related_post($bp_id, $new_cat_id)
+	{
+		$stmt = $this->conn->prepare("UPDATE bp_cats SET cat_id = ? WHERE bp_id = ?");
+		$stmt->bind_param("ii", $new_cat_id, $bp_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
 	//Delete post by id
 	public function delete_post($bp_id)
 	{
