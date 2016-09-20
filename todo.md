@@ -2,8 +2,8 @@
 ### This list is to keep track of my current progress.
 #### Reference:
 
-> - [x] incomplete
-> - [ ] completed
+> - [x] completed
+> - [ ] incomplete
 
 # Basic user functionality:
 - [x] header.php
