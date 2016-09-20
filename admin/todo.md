@@ -1,7 +1,7 @@
 # To-do list
 
-> [x] incomplete
-> [ ] completed
+> - [x] incomplete
+> - [ ] completed
 
 # For basic user functionality:
 - [x] header.php
