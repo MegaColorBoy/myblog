@@ -27,7 +27,7 @@ client page though.)
 - [ ] send-mail-to-all.php
 
 # Mail class:
-- [x] mail.php (class)
+- [ ] mail.php (class)
 - [ ] mail_templates.php (class)
 
 # Links:
