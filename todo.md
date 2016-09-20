@@ -80,5 +80,5 @@ client page though.)
 - [ ] Display comments on "view-post"
 - [ ] Display related posts on "view-post"
 - [ ] Display all my links
-
-
+- [ ] Allow people to subscribe
+- [ ] Visitors are able to send feedback/queries to me
