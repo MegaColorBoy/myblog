@@ -74,7 +74,7 @@ client page though.)
 
 # Functionality for Blog index page (myblog/index.php):
 - [ ] Usage of SEO friendly URLs (need to modify in .htaccess file)
-- [ ] Generate all posts in descending order
+- [x] Generate all posts in descending order
 - [ ] A page that displays posts by categories (I'll call this "category/whatever-category")
 - [ ] A page to view the post via simple url routing (I'll call this "view-post")
 - [ ] Display comments on "view-post"
