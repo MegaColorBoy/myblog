@@ -89,5 +89,28 @@ class DB_HANDLER
 		return $posts;
 	}
 	//----Blogpost functions----//
+
+	//----Links functions----//
+	//Get all links
+	public function get_all_links()
+	{
+		$links = array();
+		$stmt = $this->conn->prepare("SELECT * FROM links");
+		$stmt->execute();
+		$row = $this->bind_result_array($stmt);
+
+		if(!$stmt->error)
+		{
+			$counter = 0;
+			while($stmt->fetch())
+			{
+				$links[$counter] = $this->getCopy($row);
+				$counter++;
+			}
+		}
+		$stmt->close();
+		return $links;
+	}
+	//----Links functions----//
 }
 ?>

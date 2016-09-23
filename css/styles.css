@@ -46,7 +46,7 @@ a {
     right: 0;
     top: 0;
     /*background-image:url('http://lorempixel.com/1024/760/nature/3/');*/
-    background-image:url('http://blog.oxforddictionaries.com/wp-content/uploads/mountain-names.jpg');
+    background-image:url('../images/m.png');
     background-size:cover;
     background-attachment:fixed;
 }
@@ -137,4 +137,14 @@ h1,h2,h3 {
 
 small.text-muted {
   font-family:courier,courier-new,monospace;
+}
+
+.img-circle
+{
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
 }
