@@ -329,7 +329,7 @@ class DB_HANDLER
 	//Edit post
 	public function update_post($bp_id, $bp_title, $bp_slug, $bp_desc, $bp_cont)
 	{
-		$stmt = $this->conn->prepare("UPDATE blog_posts SET bp_title = ?, bp_slug = ?, bp_desc = ?, bp_cont = ?, bp_date = NOW() WHERE bp_id = ?");
+		$stmt = $this->conn->prepare("UPDATE blog_posts SET bp_title = ?, bp_slug = ?, bp_desc = ?, bp_cont = ? WHERE bp_id = ?");
 		$stmt->bind_param("ssssi", $bp_title, $bp_slug, $bp_desc, $bp_cont, $bp_id);
 		$stmt->execute();
 		$num_affected_rows = $stmt->affected_rows;

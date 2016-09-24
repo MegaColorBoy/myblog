@@ -66,7 +66,7 @@ $posts = $handler->get_all_posts();
                                     TODO: There's no point of having preview-post.php.
                                     I'll develop the main page and link it to that instead.
                                 -->
-    							<a class="btn btn-success btn-block" href="preview-post.php?id=<?php echo $posts[$counter]['bp_id'];?>">Preview</a>
+    							<a class="btn btn-success btn-block" href="../view-post.php?id=<?php echo $posts[$counter]['bp_id'];?>">View Page</a>
     							<a class="btn btn-primary btn-block" href="edit-post.php?id=<?php echo $posts[$counter]['bp_id'];?>">
     								Edit</a>
     							<a class="btn btn-danger btn-block" href="delete-post.php?id=<?php echo $posts[$counter]['bp_id'];?>"

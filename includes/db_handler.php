@@ -88,6 +88,34 @@ class DB_HANDLER
 		$stmt->close();
 		return $posts;
 	}
+
+	//Get post by id
+	public function get_post_by_id($bp_id)
+	{
+		$stmt = $this->conn->prepare("SELECT bp_title, bp_slug, bp_desc, bp_cont, bp_date FROM blog_posts WHERE bp_id = ?");
+		$stmt->bind_param("i", $bp_id);
+		if($stmt->execute())
+		{
+			$post = array();
+			$row = $this->bind_result_array($stmt);
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$post[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $post;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
 	//----Blogpost functions----//
 
 	//----Links functions----//

@@ -76,9 +76,9 @@ client page though.)
 - [ ] Usage of SEO friendly URLs (need to modify in .htaccess file)
 - [x] Generate all posts in descending order
 - [ ] A page that displays posts by categories (I'll call this "category/whatever-category")
-- [ ] A page to view the post via simple url routing (I'll call this "view-post")
+- [x] A page to view the post via simple url routing (I'll call this "view-post")
 - [ ] Display comments on "view-post"
 - [ ] Display related posts on "view-post"
-- [ ] Display all my links
+- [x] Display all my links
 - [ ] Allow people to subscribe
 - [ ] Visitors are able to send feedback/queries to me

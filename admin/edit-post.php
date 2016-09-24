@@ -32,11 +32,13 @@ $bp_category = $handler->get_cat_by_cat_id($cat_id[0]['cat_id']);
 //Validation check
 if(isset($_POST['submit']))
 {
+	$_POST = array_map('stripslashes',$_POST);
 	extract($_POST);
-	$post_title = mysqli_real_escape_string($conn, $post_title);
-	$post_cat = mysqli_real_escape_string($conn, $post_cat);
-	$post_desc = mysqli_real_escape_string($conn, $post_desc);
-	$post_cont = mysqli_real_escape_string($conn, $post_cont);
+	//Main cause of displaying '\r\n' every single time, only use mysqli_real_escape_string, when required
+	//$post_title = mysqli_real_escape_string($conn, $post_title);
+	//$post_cat = mysqli_real_escape_string($conn, $post_cat);
+	//$post_desc = mysqli_real_escape_string($conn, $post_desc);
+	//$post_cont = mysqli_real_escape_string($conn, $post_cont);
 
 	if(!isset($error))
 	{
