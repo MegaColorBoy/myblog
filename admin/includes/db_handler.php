@@ -430,7 +430,7 @@ class DB_HANDLER
 	public function get_all_posts()
 	{
 		$posts = array();
-		$stmt = $this->conn->prepare("SELECT * FROM blog_posts");
+		$stmt = $this->conn->prepare("SELECT blog_posts.*, categories.cat_id, categories.cat_title AS cat_title FROM blog_posts LEFT JOIN bp_cats ON bp_cats.bp_id = blog_posts.bp_id LEFT JOIN categories ON bp_cats.cat_id = categories.cat_id");
 		$stmt->execute();
 		$row = $this->bind_result_array($stmt);
 

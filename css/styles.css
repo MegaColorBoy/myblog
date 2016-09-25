@@ -106,7 +106,12 @@ a {
   }
 }
 
-
+.date
+{
+  float: right;
+  text-align: right;
+  font-style: italic;
+}
 
 
 /* bootstrap overrides */

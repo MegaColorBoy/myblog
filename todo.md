@@ -73,12 +73,12 @@ client page though.)
 - [ ] delete-comments.php
 
 # Functionality for Blog index page (myblog/index.php):
-- [ ] Usage of SEO friendly URLs (need to modify in .htaccess file)
+- [ ] Usage of SEO friendly URLs (need to modify in .htaccess file - leave it to the last before hosting)
 - [x] Generate all posts in descending order
 - [ ] A page that displays posts by categories (I'll call this "category/whatever-category")
 - [x] A page to view the post via simple url routing (I'll call this "view-post")
 - [ ] Display comments on "view-post"
-- [ ] Display related posts on "view-post"
+- [x] Display related posts on "view-post"
 - [x] Display all my links
 - [ ] Allow people to subscribe
 - [ ] Visitors are able to send feedback/queries to me

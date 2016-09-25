@@ -44,11 +44,17 @@ $links = $handler->get_all_links();
     {?>
       <div class="row">    
         <div class="col-sm-10">
-          <h3><?php echo $posts[$counter]['bp_title'];?></h3>
+          <h3><a href='view-post.php?id=<?php echo $posts[$counter]['bp_id'];?>'><?php echo $posts[$counter]['bp_title'];?></a></h3>
           <h4><span class="label label-info"><?php echo $posts[$counter]['cat_title']; ?></span></h4><h4>
-          <small class="text-muted"><?php echo $posts[$counter]['bp_date'];?> • <a href='view-post.php?id=<?php echo $posts[$counter]['bp_id'];?>' class="text-muted">Read More</a></small>
+          <small class="text-muted"><span class="fa fa-clock-o"></span> <?php echo $posts[$counter]['bp_date'];?> • <a href='view-post.php?id=<?php echo $posts[$counter]['bp_id'];?>' class="text-muted">Read More</a></small>
           </h4>
-        </div> 
+        </div>
+        <?php if(($counter + 1) < $count)
+        {?>
+          <div class="col-sm-12"><hr/></div>
+        <?php
+        }
+        ?>
       </div>
       <?php
       $counter++;
@@ -56,7 +62,7 @@ $links = $handler->get_all_links();
     ?>
 
     <!-- /anything until here-->
-    <div class="col-sm-12">
+    <div style="margin-top:-30px;" class="col-sm-12">
       <div class="page-header text-muted divider">Connect with Me</div>
     </div>
      
@@ -86,10 +92,10 @@ $links = $handler->get_all_links();
       </div>
     </div>
 
-    <hr>
                           
     <!-- footer -->
-    <div class="row" id="footer">    
+    <div class="row" id="footer">
+      <div class="col-sm-12"><hr/></div>     
       <div class="col-sm-6"></div>
       <div class="col-sm-6">
         <p>
@@ -97,9 +103,9 @@ $links = $handler->get_all_links();
         <a href="#" class="pull-right">Copyright &copy; 2016 Abdush Shakoor</a>
         </p>
       </div>
+      <div class="col-sm-12"><hr/></div> 
     </div>
     <!-- /footer -->
-    <hr>  
     </div><!-- /col-9 -->
   </div><!-- /padding -->
 </div>

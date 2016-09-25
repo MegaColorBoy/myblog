@@ -23,7 +23,7 @@ $post = $handler->get_post_by_id($get_post_id);
     <div style="margin-top:-60px;" class="col-sm-12" id="featured">   
       <div class="page-header text-muted">
         <h3><?php echo $post[0]['bp_title'];?></h3><!--post title-->
-        <h6><span class="fa fa-clock-o"></span> <?php echo $post[0]['bp_date'];?></h6><!--post date-->
+        <h6><span class="fa fa-clock-o"></span> <?php echo $post[0]['bp_date'];?> |by Abdush Shakoor</h6><!--post date-->
       </div> 
     </div>
        
@@ -35,10 +35,32 @@ $post = $handler->get_post_by_id($get_post_id);
     </div>
     <!-- /post content until here-->
 
+    <!--Display related posts-->
     <div class="col-sm-12">
       <div class="page-header text-muted divider">Related Posts</div>
+      <div class="">
+        <?php
+        $rel_posts = $handler->get_all_related_posts($post[0]['cat_title']);
+        $res = count($rel_posts);
+        $counter = 0;
+        while($counter < $res)
+        {
+          if($rel_posts[$counter]['bp_title'] != $post[0]['bp_title'])
+          {
+        ?>
+          <a class="text-muted divider" href='view-post.php?id=<?php echo $rel_posts[$counter]['bp_id'];?>'>
+          <?php echo $rel_posts[$counter]['bp_title'];?><span class="date"><?php echo $rel_posts[$counter]['bp_date'];?></span>
+          </a>
+          <hr/>
+        <?php
+          }
+            $counter++;
+        } 
+        ?>
+      </div>
     </div>
-    
+    <!-- /end of displaying related posts-->
+
     <div class="col-sm-12">
       <div class="page-header text-muted divider">Comments</div>
     </div>
@@ -54,9 +76,9 @@ $post = $handler->get_post_by_id($get_post_id);
         <a href="#" class="pull-right">Copyright &copy; 2016 Abdush Shakoor</a>
         </p>
       </div>
+      <div class="col-sm-12"><hr/></div> 
     </div>
-    <!-- /footer -->
-    <hr>  
+    <!-- /footer -->  
     </div><!-- /col-9 -->
   </div><!-- /padding -->
 </div>

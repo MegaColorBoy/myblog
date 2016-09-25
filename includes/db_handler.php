@@ -92,7 +92,7 @@ class DB_HANDLER
 	//Get post by id
 	public function get_post_by_id($bp_id)
 	{
-		$stmt = $this->conn->prepare("SELECT bp_title, bp_slug, bp_desc, bp_cont, bp_date FROM blog_posts WHERE bp_id = ?");
+		$stmt = $this->conn->prepare("SELECT blog_posts.*, categories.cat_id, categories.cat_title AS cat_title FROM blog_posts LEFT JOIN bp_cats ON bp_cats.bp_id = blog_posts.bp_id LEFT JOIN categories ON bp_cats.cat_id = categories.cat_id WHERE blog_posts.bp_id = ?");
 		$stmt->bind_param("i", $bp_id);
 		if($stmt->execute())
 		{
@@ -109,6 +109,33 @@ class DB_HANDLER
 			}
 			$stmt->close();
 			return $post;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	//Get all related posts by category
+	public function get_all_related_posts($cat_title)
+	{
+		$stmt = $this->conn->prepare("SELECT blog_posts.*, categories.cat_id, categories.cat_title AS cat_title FROM blog_posts LEFT JOIN bp_cats ON bp_cats.bp_id = blog_posts.bp_id LEFT JOIN categories ON bp_cats.cat_id = categories.cat_id WHERE categories.cat_title = ? ORDER BY blog_posts.bp_date DESC LIMIT 5");
+		$stmt->bind_param("s", $cat_title);
+		if($stmt->execute())
+		{
+			$posts = array();
+			$row = $this->bind_result_array($stmt);
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$posts[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+			}
+			$stmt->close();
+			return $posts;
 		}
 		else
 		{

@@ -30,7 +30,7 @@ $posts = $handler->get_all_posts();
     <h1 class="page-header">Manage blog posts</h1>
 
     <!-- search bar -->
-    <input type="text" id="search_bar" onkeyup="searchTable()" placeholder="Search for category..."/>
+    <input type="text" id="search_bar" onkeyup="searchTable()" placeholder="Search for blog post..."/>
     <div class="table-responsive">
     	<table class="table table-striped" id="collapse_table">
     		<thead>
@@ -39,6 +39,7 @@ $posts = $handler->get_all_posts();
 	    			<th>Post title</th>
 	    			<th>Post slug</th>
 	    			<th>Post Description</th>
+                    <th>Category</th>
 	    			<th>Created at</th>
 	    			<th>Action</th>
     			</tr>
@@ -59,6 +60,7 @@ $posts = $handler->get_all_posts();
     						echo '<td>'.$posts[$counter]['bp_title'].'</td>';
     						echo '<td>'.$posts[$counter]['bp_slug'].'</td>';
     						echo '<td>'.$posts[$counter]['bp_desc'].'</td>';
+                            echo '<td>'.$posts[$counter]['cat_title'].'</td>';
     						echo '<td>'.$posts[$counter]['bp_date'].'</td>';
     						?>
     						<td>
