@@ -48,7 +48,7 @@ $post = $handler->get_post_by_id($get_post_id);
           if($rel_posts[$counter]['bp_title'] != $post[0]['bp_title'])
           {
         ?>
-          <a class="text-muted divider" href='view-post.php?id=<?php echo $rel_posts[$counter]['bp_id'];?>'>
+          <a class="text-muted divider" href='posts/<?php echo $rel_posts[$counter]['bp_id'];?>'>
           <?php echo $rel_posts[$counter]['bp_title'];?><span class="date"><?php echo $rel_posts[$counter]['bp_date'];?></span>
           </a>
           <hr/>
@@ -67,18 +67,11 @@ $post = $handler->get_post_by_id($get_post_id);
 
     <hr>
                           
-    <!-- footer -->
-    <div class="row" id="footer">    
-      <div class="col-sm-6"></div>
-      <div class="col-sm-6">
-        <p>
-        <!--<a href="#" class="pull-right">Made with <span>&#x2764;</span> by Abdush Shakoor</a><br>-->
-        <a href="#" class="pull-right">Copyright &copy; 2016 Abdush Shakoor</a>
-        </p>
-      </div>
-      <div class="col-sm-12"><hr/></div> 
-    </div>
-    <!-- /footer -->  
+    <!-- display links and footer -->
+    <?php 
+    include_once('includes/display_links.php');
+    include_once('includes/div_footer.php');
+    ?>
     </div><!-- /col-9 -->
   </div><!-- /padding -->
 </div>

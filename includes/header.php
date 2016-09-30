@@ -8,6 +8,7 @@
 		<title>Abdush Shakoor's Blog</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <base href="/my_blog/">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -47,7 +48,7 @@
 
                 <ul class="nav">
                     <li class="active"><a href="/my_blog">Posts</a></li>
-                    <li><a href="#cat">Categories</a></li>
+                    <li><a href="categories">Categories</a></li> <!-- refer to .htaccess file to change -->
                     <li><a href="#arc">Archives</a></li>
                 </ul>
                 <ul class="nav hidden-xs" id="sidebar-footer">
