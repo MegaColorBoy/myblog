@@ -1,5 +1,8 @@
 RewriteEngine On
 
+#Re-write the view-posts.php to posts
 RewriteRule ^posts/([0-9]+) view-post.php?id=$1
+
+#Re-write the categories.php to categories
 RewriteRule ^categories?$ categories.php
 
