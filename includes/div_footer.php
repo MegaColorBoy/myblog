@@ -11,3 +11,4 @@
       <div class="col-sm-12"><hr/></div> 
     </div>
     <!-- /footer -->
+    <?php include_once('includes/feedback_modal.php');?>

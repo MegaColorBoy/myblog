@@ -57,7 +57,7 @@ $posts = $handler->get_all_posts();
     <!-- /anything until here-->
 
     <!-- display links and footer -->
-    <?php 
+    <?php
     include_once('includes/display_links.php');
     include_once('includes/div_footer.php');
     ?>

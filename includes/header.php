@@ -51,11 +51,12 @@
                     <li class="active"><a href="/my_blog">Posts</a></li>
                     <li><a href="categories">Categories</a></li> <!-- refer to .htaccess file to change -->
                     <li><a href="archives">Archives</a></li> <!-- refer to .htaccess file to change -->
+                    <li><a href="#resume">Resume</a></li>
                 </ul>
                 <ul class="nav hidden-xs" id="sidebar-footer">
                     <li>
                       <!--<a href="#">Subscribe Me!</a>-->
-                      <a href="#feed">Feedback</a>
+                      <a href="#feedback" role="button" data-toggle="modal">Feedback</a>
                     </li>
                     <!--<li>
                         <a>Made with <span>&#x2764;</span> by Abdush Shakoor</a>

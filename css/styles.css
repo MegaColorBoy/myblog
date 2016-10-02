@@ -153,3 +153,22 @@ small.text-muted {
   -webkit-border-radius: 150px;
   -moz-border-radius: 150px;
 }
+
+.modal
+{
+  position: fixed;
+  right: 0;
+  top: 40px;
+}
+
+.modal-header
+{
+  background: #2c3e50;
+  color: #FFF;
+}
+
+.modal-body
+{
+  background: #34495e;
+  color: #FFF;
+}
