@@ -37,9 +37,10 @@ $posts = $handler->get_all_posts();
     {?>
       <div class="row">    
         <div class="col-sm-10">
-          <h3><a href='posts/<?php echo $posts[$counter]['bp_id'];?>'><?php echo $posts[$counter]['bp_title'];?></a></h3>
+          <h3><a href='posts/<?php echo $posts[$counter]['bp_slug'];?>'><?php echo $posts[$counter]['bp_title'];?></a></h3>
+          <div><?php echo $posts[$counter]['bp_desc'];?></div>
           <h4><span class="label label-info"><?php echo $posts[$counter]['cat_title']; ?></span></h4><h4>
-          <small class="text-muted"><span class="fa fa-clock-o"></span> <?php echo $posts[$counter]['bp_date'];?> • <a href='posts/<?php echo $posts[$counter]['bp_id'];?>' class="text-muted">Read More</a></small>
+          <small class="text-muted"><span class="fa fa-clock-o"></span> <?php echo date("d M Y",strtotime($posts[$counter]['bp_date']));?> • <a href='posts/<?php echo $posts[$counter]['bp_slug'];?>' class="text-muted">Read More</a></small>
           </h4>
         </div>
         <?php if(($counter + 1) < $count)

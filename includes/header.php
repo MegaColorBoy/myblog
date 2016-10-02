@@ -15,6 +15,7 @@
 		<![endif]-->
 		<link href="css/styles.css" rel="stylesheet">
         <link href="css/infocard.css" rel="stylesheet">
+        <link href="css/error-page.css" rel="stylesheet">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 	</head>
 	<body>
@@ -49,7 +50,7 @@
                 <ul class="nav">
                     <li class="active"><a href="/my_blog">Posts</a></li>
                     <li><a href="categories">Categories</a></li> <!-- refer to .htaccess file to change -->
-                    <li><a href="#arc">Archives</a></li>
+                    <li><a href="archives">Archives</a></li> <!-- refer to .htaccess file to change -->
                 </ul>
                 <ul class="nav hidden-xs" id="sidebar-footer">
                     <li>

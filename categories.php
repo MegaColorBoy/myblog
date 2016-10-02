@@ -33,18 +33,18 @@ $handler = new DB_HANDLER();
 			if(count($posts) !=0)
 			{
 				?>
-				<div style="margin-top:-5px;" class="page-header text-muted divider"><?php echo $categories[$i]['cat_title'];?></div>
+				<div style="margin-top:10px;" class="page-header text-muted divider"><?php echo $categories[$i]['cat_title'];?></div>
 				<?php
 				//2. get all posts by category
 				$posts = $handler->get_all_posts_by_category($categories[$i]['cat_id']);
 				for($j=0; $j<count($posts); $j++)
 				{?>
 					<div class="">
-					<a class="text-muted divider" href='posts/<?php echo $posts[$j]['bp_id'];?>'>
-						<?php echo $posts[$j]['bp_title'];?><span class="date"><?php echo $posts[$j]['bp_date'];?></span>
+					<a style="font-style:italic;" class="text-muted divider" href='posts/<?php echo $posts[$j]['bp_slug'];?>'>
+						<?php echo $posts[$j]['bp_title'];?><span class="date"><?php echo date("d M Y",strtotime($posts[$j]['bp_date']));?></span>
 					</a>
+					<?php if($j < (count($posts)-1)){echo'<hr/>';}?>
 					</div>
-					<br>
 					<?php
 				}
 			}

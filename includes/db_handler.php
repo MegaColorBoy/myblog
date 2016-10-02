@@ -123,6 +123,36 @@ class DB_HANDLER
 		}
 	}
 
+	//Get post by post slug -- same as the function above but for friendly SEO URLs 
+	public function get_post_by_slug($bp_slug)
+	{
+		$stmt = $this->conn->prepare("SELECT blog_posts.*, categories.cat_id, categories.cat_title AS cat_title FROM blog_posts
+			LEFT JOIN bp_cats ON bp_cats.bp_id = blog_posts.bp_id
+			LEFT JOIN categories ON bp_cats.cat_id = categories.cat_id
+			WHERE blog_posts.bp_slug = ?");
+		$stmt->bind_param("s", $bp_slug);
+		if($stmt->execute())
+		{
+			$post = array();
+			$row = $this->bind_result_array($stmt);
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$post[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+				$stmt->close();
+				return $post;
+			}
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
 	//Get all posts by category
 	public function get_all_posts_by_category($cat_id)
 	{

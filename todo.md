@@ -79,6 +79,7 @@ client page though.)
 - [x] A page to view the post via simple url routing (I'll call this "view-post")
 - [ ] Display comments on "view-post"
 - [x] Display related posts on "view-post"
+- [ ] Display archives
 - [x] Display all my links
-- [ ] Allow people to subscribe
+- [ ] Allow people to subscribe - might scrape it off or implement it later
 - [ ] Visitors are able to send feedback/queries to me

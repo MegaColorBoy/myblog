@@ -10,8 +10,12 @@ $conn = $db->connect();
 $handler = new DB_HANDLER();
 
 //Get post by id
-$get_post_id = $_GET['id'];
-$post = $handler->get_post_by_id($get_post_id);
+//$get_post_id = $_GET['id'];
+//$post = $handler->get_post_by_id($get_post_id);
+
+$get_post_slug = $_GET['url'];
+$post = $handler->get_post_by_slug($get_post_slug);
+
 ?>
 
 <!-- main  remove from here-->
@@ -23,7 +27,7 @@ $post = $handler->get_post_by_id($get_post_id);
     <div style="margin-top:-60px;" class="col-sm-12" id="featured">   
       <div class="page-header text-muted">
         <h3><?php echo $post[0]['bp_title'];?></h3><!--post title-->
-        <h6><span class="fa fa-clock-o"></span> <?php echo $post[0]['bp_date'];?> |by Abdush Shakoor</h6><!--post date-->
+        <h6><span class="fa fa-clock-o"></span> <?php echo date("d M Y",strtotime($post[0]['bp_date']));?> |by Abdush Shakoor</h6><!--post date-->
       </div> 
     </div>
        
@@ -48,10 +52,10 @@ $post = $handler->get_post_by_id($get_post_id);
           if($rel_posts[$counter]['bp_title'] != $post[0]['bp_title'])
           {
         ?>
-          <a class="text-muted divider" href='posts/<?php echo $rel_posts[$counter]['bp_id'];?>'>
-          <?php echo $rel_posts[$counter]['bp_title'];?><span class="date"><?php echo $rel_posts[$counter]['bp_date'];?></span>
+          <a style="font-style:italic;" class="text-muted divider" href='posts/<?php echo $rel_posts[$counter]['bp_slug'];?>'>
+          <?php echo $rel_posts[$counter]['bp_title'];?><span class="date"><?php echo date("d M Y",strtotime($rel_posts[$counter]['bp_date']));?></span>
           </a>
-          <hr/>
+          <?php if($counter < ($res-1)){echo'<hr/>';}?>
         <?php
           }
             $counter++;
