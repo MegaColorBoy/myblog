@@ -2,7 +2,7 @@ RewriteEngine On
 
 #Re-write the view-posts.php to posts/article-name-or-something
 #RewriteRule ^posts/([0-9]+) view-post.php?id=$1
-RewriteRule ^posts/(.*)$ view-post.php?url=$1
+RewriteRule ^posts/(.*)$ view-post.php?url=$1 [QSA,L]
 
 #Re-write the categories.php to categories
 RewriteRule ^categories?$ categories.php
@@ -10,5 +10,11 @@ RewriteRule ^categories?$ categories.php
 #Re-write the archives.php to archives
 RewriteRule ^archives?$ archives.php
 
+RewriteRule ^404$ error404.php
 ErrorDocument 404 /my_blog/error404.php
+
+RewriteRule ^500$ error500.php
 ErrorDocument 500 /my_blog/error500.php
+
+RewriteCond %{REQUEST_FILENAME} !-d [NC]
+RewriteCond %{REQUEST_FILENAME} !-f [NC]

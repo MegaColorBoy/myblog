@@ -16,6 +16,12 @@ $handler = new DB_HANDLER();
 $get_post_slug = $_GET['url'];
 $post = $handler->get_post_by_slug($get_post_slug);
 
+//If the slug doesn't exist, redirect to error page
+if(empty($post))
+{
+  header('Location: /my_blog/404');
+  exit;
+}
 ?>
 
 <!-- main  remove from here-->
