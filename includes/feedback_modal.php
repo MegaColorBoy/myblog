@@ -9,11 +9,11 @@
 				<form id="feedback_form" class="form-horizontal" name="feedback_form" method="post" action="">
 					<div class="form-group">
 						<div class="col-lg-6 col-sm-6 col-md-6">
-							<input required placeholder="Firstname" type="text" class="form-control" id="fname" name="fname" 
+							<input required placeholder="First name" type="text" class="form-control" id="fname" name="fname" 
 							value='<?php if(isset($error)){}?>'/>
 						</div>
 						<div class="col-lg-6 col-sm-6 col-md-6">
-							<input required placeholder="Lastname" type="text" class="form-control" id="lname" name="lname" 
+							<input required placeholder="Last name" type="text" class="form-control" id="lname" name="lname" 
 							value='<?php if(isset($error)){}?>'/>
 						</div>
 					</div>
@@ -30,9 +30,13 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-lg-12 col-md-12 col-sm-12">
-							<button type="submit" name="feedback_submit" class="btn btn-primary btn-block"><span class="fa fa-paper-plane"></span> 
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<button type="submit" name="feedback_submit" class="btn btn-success btn-block"><span class="fa fa-paper-plane"></span> 
 							Send</button>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<button type="reset" name="clear" class="btn btn-danger btn-block"><span class="fa fa-trash"></span> 
+							Clear</button>
 						</div>
 					</div>
 				</form>
