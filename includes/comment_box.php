@@ -1,0 +1,3 @@
+<?php
+//For comments
+?>

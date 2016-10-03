@@ -105,8 +105,7 @@ CREATE TABLE IF NOT EXISTS comments
 	cmt_content TEXT NOT NULL, #commenter's comments
 	posted_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-	PRIMARY KEY(cmt_id),
-	FOREIGN KEY(bp_id) REFERENCES blog_posts(bp_id)
+	PRIMARY KEY(cmt_id)
 );
 
 #page count

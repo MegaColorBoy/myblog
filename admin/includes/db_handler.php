@@ -883,6 +883,47 @@ class DB_HANDLER
 
 	//----Comments functions----//
 
+	//Add comment
+	public function add_comment($bp_id, $cmt_username, $cmt_email, $cmt_content)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO comments (bp_id, cmt_username, cmt_email, cmt_content, posted_at) VALUES (?,?,?,?,NOW())");
+		$stmt->bind_param("isss", $bp_id, $cmt_username, $cmt_email, $cmt_content);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
+
+	//Get all comments
+	public function get_all_comments()
+	{
+		$comments = array();
+		$stmt = $this->conn->prepare("SELECT * FROM comments");
+		$stmt->execute();
+		$row = $this->bind_result_array($stmt);
+
+		if(!$stmt->error)
+		{
+			$counter = 0;
+			while($stmt->fetch())
+			{
+				$comments[$counter] = $this->getCopy($row);
+				$counter++;
+			}
+		}
+		$stmt->close();
+		return $comments;
+	}
+
+	//Delete comment
+	public function delete_comment($cmt_id)
+	{
+		$stmt = $this->conn->prepare("DELETE FROM comments WHERE cmt_id = ?");
+		$stmt->bind_param("i", $cmt_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
 	//----Comments functions----//
 
 	//----Messages functions----//

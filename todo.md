@@ -68,9 +68,12 @@ client page though.)
 - [ ] message-read.php
 
 # Comments:
-- [ ] comments.php (will be implemented after posts.php)
-- [ ] add-comments.php (for client side, can be built for testing purposes also)
-- [ ] delete-comments.php
+- [x] comments.php (will be implemented after posts.php)
+- [x] add-comments.php (for client side, can be built for testing purposes also)
+- [x] delete-comments.php
+
+# Page count:
+- [ ] Display page count in CMS
 
 # Functionality for Blog index page (myblog/index.php):
 - [x] Usage of SEO friendly URLs (need to modify in .htaccess file - leave it to the last before hosting)
