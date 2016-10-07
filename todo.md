@@ -74,10 +74,10 @@ client page though.)
 
 # Comments in the post:
 > the comment system files are split into parts:
-	* comment_box.php
-	* add_comment.php
-	* the script for comment_box at includes/footer.php
-	* comments.css
+	1. comment_box.php
+	2. add_comment.php
+	3. the script for comment_box at includes/footer.php
+	4. comments.css
 
 - [x] js for comment box (can be found in includes/footer.php)
 - [x] comment-box.php
