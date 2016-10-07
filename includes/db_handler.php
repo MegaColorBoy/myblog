@@ -214,6 +214,34 @@ class DB_HANDLER
 		}
 	}
 
+	//Get post id by post slug
+	public function get_post_id($bp_slug)
+	{
+		$stmt = $this->conn->prepare("SELECT bp_id FROM blog_posts WHERE bp_slug = ?");
+		$stmt->bind_param("s", $bp_slug);
+		if($stmt->execute())
+		{
+			$post_id = array();
+			$row = $this->bind_result_array($stmt);
+
+			if(!$stmt->error)
+			{
+				$counter = 0;
+				while($stmt->fetch())
+				{
+					$post_id[$counter] = $this->getCopy($row);
+					$counter++;
+				}
+				$stmt->close();
+				return $post_id;
+			}
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
 	//----Blogpost functions----//
 
 	//----Links functions----//
@@ -260,5 +288,43 @@ class DB_HANDLER
 		return $categories;
 	}
 	//----Categories functions----//
+
+	//----Comments functions----//
+	public function get_all_comments_by_bp_id($bp_id)
+	{
+		$comments = array();
+		$stmt = $this->conn->prepare("SELECT * FROM comments WHERE bp_id = ?");
+		$stmt->bind_param("i", $bp_id);
+		$stmt->execute();
+		$row = $this->bind_result_array($stmt);
+
+		if(!$stmt->error)
+		{
+			$counter = 0;
+			while($stmt->fetch())
+			{
+				$comments[$counter] = $this->getCopy($row);
+				$counter++;
+			}
+		}
+		$stmt->close();
+		return $comments;
+	}
+
+	//Add comment
+	public function add_comment($bp_id, $cmt_username, $cmt_email, $cmt_content)
+	{
+		//If there's no name, then the name would be "guest"
+		if(strlen($cmt_username) <= '1')
+		{
+			$cmt_username = "Guest";
+		}
+		$stmt = $this->conn->prepare("INSERT INTO comments (bp_id, cmt_username, cmt_email, cmt_content, posted_at) VALUES (?,?,?,?,NOW())");
+		$stmt->bind_param("isss", $bp_id, $cmt_username, $cmt_email, $cmt_content);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
+	//----Comments functions----//
 }
 ?>

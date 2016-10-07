@@ -73,6 +73,7 @@ if(empty($post))
 
     <div class="col-sm-12">
       <div class="page-header text-muted divider">Comments</div>
+      <?php include_once("includes/comment_box.php"); ?>
     </div>
 
     <hr>

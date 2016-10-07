@@ -73,9 +73,17 @@ client page though.)
 - [x] delete-comments.php
 
 # Comments in the post:
-- [ ] comment.js
-- [ ] comment-box.php
-- [ ] comment.css 
+> the comment system files are split into parts:
+	* comment_box.php
+	* add_comment.php
+	* the script for comment_box at includes/footer.php
+	* comments.css
+
+- [x] js for comment box (can be found in includes/footer.php)
+- [x] comment-box.php
+- [x] comment.css
+- [x] add-comment.php
+
 
 # Page count:
 - [ ] Display page count in CMS
@@ -85,7 +93,7 @@ client page though.)
 - [x] Generate all posts in descending order
 - [x] A page that displays posts by categories (I'll call this "category/whatever-category")
 - [x] A page to view the post via simple url routing (I'll call this "view-post")
-- [ ] Display comments on "view-post"
+- [x] Display comments on "view-post"
 - [x] Display related posts on "view-post"
 - [x] Display archives
 - [x] Display all my links
