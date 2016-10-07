@@ -72,6 +72,11 @@ client page though.)
 - [x] add-comments.php (for client side, can be built for testing purposes also)
 - [x] delete-comments.php
 
+# Comments in the post:
+- [ ] comment.js
+- [ ] comment-box.php
+- [ ] comment.css 
+
 # Page count:
 - [ ] Display page count in CMS
 
