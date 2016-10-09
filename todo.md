@@ -17,13 +17,14 @@
 - [x] edit_user.php (only for the ones using it, can't change other users details.)
 - [x] delete_user.php
 - [x] me.php
+- [x] improved dashboard features in index.php
 
 # Subscribers:
 - [x] subscribers.php
 - [x] delete-subscriber.php
 - [x] add-subscriber.php (just for test but this feature will be added to the
 client page though.)
-- [ ] send-mail.php
+- [ ] send-mail.php (created but incomplete)
 - [ ] send-mail-to-all.php
 
 # Mail class:

@@ -81,6 +81,224 @@ class DB_HANDLER
 		$url = trim($url, '-');
 		return $url;
 	}
+
+	//Generate panel -- too lazy to make them manually lol :) !
+	function gen_panel($panel_name, $panel_icon, $panel_link, $panel_count, $panel_color)
+	{
+	echo '<div class="col-lg-4 col-md-6">';
+		echo '<div class="panel '.$panel_color.'">';
+			echo '<div class="panel-heading">';
+				echo '<div class="row">';
+					echo '<div class="col-xs-3">';
+						echo '<span class="huge-icon glyphicon '.$panel_icon.'"></span>';
+					echo '</div>';
+					echo '<div class="col-xs-9 text-right">';
+					echo '<div><h1>'.$panel_count.'</h1></div>';
+					echo '<div>'.$panel_name.'</div>';
+					echo '</div>';
+				echo '</div>';
+			echo '</div>';
+			echo '<a href="'.$panel_link.'">';
+				echo '<div class="panel-footer">';
+					echo '<span class="pull-left">View '.$panel_name.'</span>';
+					echo '<span class="pull-right glyphicon glyphicon-circle-arrow-right"></span>';
+					echo '<div class="clearfix"></div>';
+				echo '</div>';
+			echo '</a>';
+		echo '</div>';
+	echo '</div>';
+	}
+
+	//Return icon
+	function ret_icon($icon_name)
+	{
+		switch($icon_name)
+		{
+			case "users":
+				return "glyphicon-sunglasses";
+				break;
+			case "blog_posts":
+				return "glyphicon-list-alt";
+				break;
+			case "categories":
+				return "glyphicon-list";
+				break;
+			case "subscribers":
+				return "glyphicon-user";
+				break;
+			case "messages":
+				return "glyphicon-envelope";
+				break;
+			case "images":
+				return "glyphicon-picture";
+				break;
+			case "links":
+				return "glyphicon-link";
+				break;
+			case "comments":
+				return "glyphicon-comment";
+				break;
+			case "page_count":
+				return "glyphicon-globe";
+				break;
+		}
+	}
+
+	//Return color
+	function ret_color($panel_name)
+	{
+		switch($panel_name)
+		{
+			case "users":
+				return "panel-red";
+				break;
+			case "blog_posts":
+				return "panel-primary";
+				break;
+			case "categories":
+				return "panel-green";
+				break;
+			case "subscribers":
+				return "panel-yellow";
+				break;
+			case "messages":
+				return "panel-primary";
+				break;
+			case "images":
+				return "panel-yellow";
+				break;
+			case "links":
+				return "panel-green";
+				break;
+			case "comments":
+				return "panel-red";
+				break;
+			case "page_count":
+				return "panel-primary";
+				break;
+		}
+	}
+
+	//Return link
+	function ret_link($link_name)
+	{
+		switch($link_name)
+		{
+			case "users":
+				return "users.php";
+				break;
+			case "blog_posts":
+				return "posts.php";
+				break;
+			case "categories":
+				return "categories.php";
+				break;
+			case "subscribers":
+				return "subscribers.php";
+				break;
+			case "messages":
+				return "feedback.php";
+				break;
+			case "images":
+				return "images.php";
+				break;
+			case "links":
+				return "links.php";
+				break;
+			case "comments":
+				return "comments.php";
+				break;
+			case "page_count":
+				return "#";
+				break;
+		}
+	}
+
+	//Count table
+	function count_table($table_id, $table_name)
+	{
+		$num_table = "SELECT COUNT($table_id) FROM $table_name";
+		$sql = mysqli_query($this->conn, $num_table);
+		$result = mysqli_fetch_assoc($sql);
+		$count = $result["COUNT(".$table_id.")"];
+		return $count;
+	}
+
+	//Return primary key of table
+	function ret_pk($table_name)
+	{
+		switch($table_name)
+		{
+			case "users":
+				return "user_id";
+				break;
+			case "blog_posts":
+				return "bp_id";
+				break;
+			case "categories":
+				return "cat_id";
+				break;
+			case "subscribers":
+				return "sub_id";
+				break;
+			case "messages":
+				return "msg_id";
+				break;
+			case "images":
+				return "img_id";
+				break;
+			case "links":
+				return "link_id";
+				break;
+			case "comments":
+				return "cmt_id";
+				break;
+			case "page_count":
+				return "pg_cnt_id";
+				break;
+		}
+	}
+
+	//Return table name
+	function ret_tn($table_name)
+	{
+		if($table_name == "Posts")
+		{
+			return "blog_posts";
+		}
+		else if($table_name == "Page Hits")
+		{
+			return "page_count";
+		}
+		else
+		{
+			return strtolower($table_name);
+		}
+	}
+
+	//Return an array that contains all table names
+	function ret_all_table_names($table_arr)
+	{
+		$new_arr = array();
+		for($i=0; $i<count($table_arr); $i++)
+		{
+			$new_arr[$i] = $this->ret_tn($table_arr[$i]);
+		}
+		return $new_arr;
+	}
+
+	//Return an array that counts all tables
+	function count_all_tables($table_arr)
+	{
+		$new_arr = array();
+		for($i=0; $i<count($table_arr); $i++)
+		{
+			$table_name = $table_arr[$i];
+			$table_id = $this->ret_pk($table_name);
+			$new_arr[$i] = $this->count_table($table_id, $table_name);
+		}
+		return $new_arr;
+	}
 	//----Utility Functions----//
 
 	//----Admin-User Functions----//
