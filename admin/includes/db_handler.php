@@ -1145,7 +1145,76 @@ class DB_HANDLER
 	//----Comments functions----//
 
 	//----Messages functions----//
+	//Get all messages
+	public function get_all_messages()
+	{
+		$messages = array();
+		$stmt = $this->conn->prepare("SELECT * FROM messages ORDER BY msg_date DESC");
+		$stmt->execute();
+		$row = $this->bind_result_array($stmt);
 
+		if(!$stmt->error)
+		{
+			$counter = 0;
+			while($stmt->fetch())
+			{
+				$messages[$counter] = $this->getCopy($row);
+				$counter++;
+			}
+			$stmt->close();
+			return $messages;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	//Send message/feedback
+	public function send_message($sender_name, $sender_email, $message)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO messages (sender_name, sender_email, sender_msg, msg_date, msg_checked) VALUES (?,?,?,NOW(),0)");
+		$stmt->bind_param("sss", $sender_name, $sender_email, $message);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
+
+	//Check message status i.e. if read or not
+	public function check_msg_status($msg_checked)
+	{
+		switch($msg_checked)
+		{
+			case 0:
+				return "Unread";
+				break;
+			case 1:
+				return "Read";
+				break;
+		}
+	}	
+	
+	//change message status
+	public function change_msg_status($msg_id, $mark_id)
+	{
+		$stmt = $this->conn->prepare("UPDATE messages SET msg_checked = ? WHERE msg_id = ?");
+		$stmt->bind_param("ii", $mark_id, $msg_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
+	//Delete message
+	public function delete_message($msg_id)
+	{
+		$stmt = $this->conn->prepare("DELETE FROM messages WHERE msg_id = ?");
+		$stmt->bind_param("i", $msg_id);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
 	//----Messages functions----//
 }
 

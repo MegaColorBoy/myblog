@@ -63,10 +63,10 @@ client page though.)
 - [x] delete-category.php
 
 # Feedback:
-- [ ] feedback.php
-- [ ] reply-feedback.php
-- [ ] delete-feedback.php
-- [ ] message-read.php
+- [x] feedback.php
+- [ ] reply-message.php
+- [x] delete-message.php
+- [x] mark-message.php
 
 # Comments:
 - [x] comments.php (will be implemented after posts.php)
@@ -84,7 +84,6 @@ client page though.)
 - [x] comment-box.php
 - [x] comment.css
 - [x] add-comment.php
-
 
 # Page count:
 - [ ] Display page count in CMS
