@@ -87,7 +87,8 @@ client page though.)
 - [x] add-comment.php
 
 # Page count:
-- [ ] Display page count in CMS
+- [x] Count page hits of the blog
+- [x] Display page count in CMS
 
 # Functionality for Blog index page (myblog/index.php):
 - [x] Usage of SEO friendly URLs (need to modify in .htaccess file - leave it to the last before hosting)

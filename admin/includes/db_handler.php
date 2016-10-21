@@ -217,10 +217,21 @@ class DB_HANDLER
 	//Count table
 	function count_table($table_id, $table_name)
 	{
-		$num_table = "SELECT COUNT($table_id) FROM $table_name";
-		$sql = mysqli_query($this->conn, $num_table);
-		$result = mysqli_fetch_assoc($sql);
-		$count = $result["COUNT(".$table_id.")"];
+		//Anything except "page hits"
+		if($table_id != "pg_cnt_id" && $table_name != "page_count")
+		{
+			$num_table = "SELECT COUNT($table_id) FROM $table_name";
+			$sql = mysqli_query($this->conn, $num_table);
+			$result = mysqli_fetch_assoc($sql);
+			$count = $result["COUNT(".$table_id.")"];
+		}
+		else
+		{
+			$num_hits = "SELECT * FROM $table_name";
+			$sql = mysqli_query($this->conn, $num_hits);
+			$result = mysqli_fetch_assoc($sql);
+			$count = $result["pg_cnt_val"];
+		}
 		return $count;
 	}
 

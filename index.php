@@ -67,5 +67,7 @@ $posts = $handler->get_all_posts();
 </div>
 <!-- /main -->
 <?php
+//Page hits update
+mysqli_query($conn, "UPDATE page_count SET pg_cnt_val=(pg_cnt_val+1) WHERE pg_cnt_name = 'hits'");
 include_once('includes/footer.php');
 ?>
