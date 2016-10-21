@@ -511,6 +511,19 @@ class DB_HANDLER
 		return $num_affected_rows > 0;
 	}
 
+	//Reset password
+	public function reset_password($username, $password)
+	{
+		include_once("pass_hash.php");
+		$stmt = $this->conn->prepare("UPDATE users SET password = ? WHERE username = ?");
+		$pass_hash = PASS_HASH::hash($password);
+		$stmt->bind_param("ss", $pass_hash, $username);
+		$stmt->execute();
+		$num_affected_rows = $stmt->affected_rows;
+		$stmt->close();
+		return $num_affected_rows > 0;
+	}
+
 	//Delete user by user id
 	public function delete_user($user_id)
 	{

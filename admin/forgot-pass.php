@@ -1,58 +1,52 @@
 <?php
-//Login Page
 session_start();
-include_once("includes/db_connect.php");
-include_once("includes/db_handler.php");
-include_once("includes/header2.php");
+include_once('includes/db_connect.php');
+include_once('includes/db_handler.php');
+include_once('includes/header2.php');
 
-//check if the user has logged in
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true)
-{
-	header('Location: index.php');
-}
-
+//Variables
 $db = new DB_CONNECT();
 $conn = $db->connect();
 $handler = new DB_HANDLER();
 
-//Login validation
+//Validation check
 if(isset($_POST['submit']))
 {
 	$username = mysqli_real_escape_string($conn, trim($_POST['username']));
-	$password = mysqli_real_escape_string($conn, trim($_POST['password']));
 
-	//Check if the user exists
+	//First, check if the user exists
 	if(!$handler->is_user_exists($username))
 	{
-		echo "<script type='text/javascript'>
-				alert('This user doesn\'t exist');
-				window.location.replace('login.php');
-			</script>";
+		$handler->print_msg("Sorry, This user does not exist!", "forgot-pass.php");
 	}
+	//Else, send the new password
 	else
 	{
-		//Check user credentials
-		if($handler->check_user_login($username, $password) == true)
+		include_once('includes/mail.php');
+		$result = $handler->get_email_by_username($username);
+		$to_user = $result[0]['email'];
+		//Generate random 8 char password
+		$password = $handler->rand_pass_gen(8);
+		
+		//Calling mail.php instance
+		$mail = new MAIL();
+		$mail->set_to_user($to_user);
+		$mail->set_subject("Reset Password - MegaColorBoy");
+		$mail->send_mail_v2("reset_password", $username, $password);
+
+		//Update user's password in the db
+		$res = $handler->reset_password($username, $password);
+
+		if($res)
 		{
-			//if the credentials are matched, then get the user details
-			//and set the SESSION variable then go to index.php
-			$user = $handler->get_user_by_username($username);
-			$_SESSION['logged_in'] = true;
-			$_SESSION['user_id'] = $user[0]['user_id'];
-			$_SESSION['username'] = $user[0]['username'];
-			header('Location: index.php');
-			exit;
+			$handler->print_msg("Please check your email for new password!", "login.php");
 		}
 		else
 		{
-			echo "<script type='text/javascript'>
-				alert('Wrong user credentials. Please try again!');
-				window.location.replace('login.php');
-			</script>";
+			$handler->print_msg("Unknown error. Please try again.", "login.php");
 		}
 	}
 }
-
 ?>
 
 <style>
@@ -107,17 +101,16 @@ if(isset($_POST['submit']))
 
 <div class="container">
 	<div class="wrapper">
-		<form action="" method="post" name="login_form" class="form-signin">
-			<h3 class="form-signin-heading">MyBlog CMS Login</h3>
+		<form action="" method="post" name="forgot_pass_form" class="form-signin">
+			<h3 class="form-signin-heading">Forgot your password?</h3>
 			<hr class="colorgraph"><br/>
-			<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus=""/>
-			<input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-			<input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Submit"/><br/>
-			<center><a href="forgot-pass.php">Forgot your password?</a></center>
+
+			<input type="text" class="form-control" name="username" placeholder="Enter your username" required autofocus=""/><br>
+			<input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Reset Password"/>
 		</form>
 	</div>
 </div>
 
 <?php
-include_once("includes/footer2.php");
+include_once('includes/footer2.php');
 ?>

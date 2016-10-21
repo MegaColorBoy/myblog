@@ -18,6 +18,7 @@
 - [x] delete_user.php
 - [x] me.php
 - [x] improved dashboard features in index.php
+- [x] reset password functionality (forgot-pass.php)
 
 # Subscribers:
 - [x] subscribers.php
@@ -28,8 +29,8 @@ client page though.)
 - [ ] send-mail-to-all.php
 
 # Mail class:
-- [ ] mail.php (class)
-- [ ] mail_templates.php (class)
+- [x] mail.php (class)
+- [x] mail_templates.php (class)
 
 # Links:
 - [x] links.php
