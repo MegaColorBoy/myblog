@@ -326,5 +326,18 @@ class DB_HANDLER
 		return $result;
 	}
 	//----Comments functions----//
+
+	//----Feedback functions----//
+
+	//Send message/feedback
+	public function send_message($sender_name, $sender_email, $message)
+	{
+		$stmt = $this->conn->prepare("INSERT INTO messages (sender_name, sender_email, sender_msg, msg_date, msg_checked) VALUES (?,?,?,NOW(),0)");
+		$stmt->bind_param("sss", $sender_name, $sender_email, $message);
+		$result = $stmt->execute();
+		$stmt->close();
+		return $result;
+	}
+	//----Feedback functions----//
 }
 ?>

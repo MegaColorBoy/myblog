@@ -31,7 +31,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-lg-6 col-md-6 col-sm-6">
-							<button type="submit" name="feedback_submit" class="btn btn-success btn-block"><span class="fa fa-paper-plane"></span> 
+							<button type="submit" name="feedback_submit" class="btn btn-success btn-block send_msg_btn"><span class="fa fa-paper-plane"></span> 
 							Send</button>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">

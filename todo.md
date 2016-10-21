@@ -100,4 +100,4 @@ client page though.)
 - [x] Display archives
 - [x] Display all my links
 - [ ] Allow people to subscribe - might scrape it off or implement it later
-- [ ] Visitors are able to send feedback/queries to me
+- [x] Visitors are able to send feedback/queries to me - not able to show thank you message in AJAX callback
