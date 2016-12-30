@@ -1,6 +1,6 @@
 <?php
-include_once('db_connect.php');
-include_once('db_handler.php');
+//include_once('db_connect.php');
+//include_once('db_handler.php');
 ?>
 
 <!DOCTYPE html>
@@ -18,14 +18,6 @@ include_once('db_handler.php');
 
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
-				<img src="images/my-image.jpg" class="img-responsive" width="304" height="236">
-			</div>
-			<div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
-				<h1>MegaColorBoy</h1>
-				<h3>Abdush Shakoor</h3>
-			</div>
-		</div>
+		
 	</div>
-	<div class="container">
+	<div style="background-color:#ecf0f1;" class="container">
