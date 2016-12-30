@@ -1,6 +1,11 @@
 <?php
-//include_once('db_connect.php');
-//include_once('db_handler.php');
+include_once('db_connect.php');
+include_once('db_handler.php');
+
+//variables
+$db = new DB_CONNECT();
+$conn = $db->connect();
+$db_handler = new DB_HANDLER();
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +22,4 @@
 </head>
 
 <body>
-	<div class="container">
-		
-	</div>
-	<div style="background-color:#ecf0f1;" class="container">
+	<div id="main" class="container">

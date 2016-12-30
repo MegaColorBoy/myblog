@@ -1,6 +1,9 @@
 <!-- new blog design -->
 <?php
 include_once('includes/header.php');
+
+//Fetch all posts
+$posts = $db_handler->get_all_posts();
 ?>
 
 <!-- this is where the content goes -->
