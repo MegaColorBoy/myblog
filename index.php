@@ -1,73 +1,53 @@
 <?php
-//Index page
-include_once('includes/db_connect.php');
-include_once('includes/db_handler.php');
 include_once('includes/header.php');
 
-//Variables
-$db = new DB_CONNECT();
-$conn = $db->connect();
-$handler = new DB_HANDLER();
-
-$num_posts = "SELECT COUNT(bp_id) FROM blog_posts";
-$sql = mysqli_query($conn, $num_posts);
-$result = mysqli_fetch_assoc($sql);
-$count = $result['COUNT(bp_id)'];
-
-//Fetch all posts
-$posts = $handler->get_all_posts(); 
+//Fetch all links
+$links = $db_handler->get_all_links();
 ?>
-          
-<!-- main  remove from here-->
-<div class="column col-sm-9" id="main">
-  <div class="padding">
-    <div class="full col-sm-9">
+<h2>Abdush Shakoor / MegaColorBoy</h2>
+<p>Computer Science + Mathematics Geek.</p>
+<a href="images/my-image.jpg"><img class="img-responsive" width="300" height="300" src="images/my-image.jpg"></a>
 
-    <!-- Page heading -->
-    <div style="margin-top:-60px;" class="col-sm-12" id="featured">   
-      <div class="page-header text-muted">
-        <h3>Diary of a Passionate Programmer</h3>
-      </div> 
-    </div>
-    
-    <!-- anything from here -->      
-    <?php
-    $counter = 0;
-    while($counter < $count)
-    {?>
-      <div class="row">    
-        <div class="col-sm-10">
-          <h3><a href='posts/<?php echo $posts[$counter]['bp_slug'];?>'><?php echo $posts[$counter]['bp_title'];?></a></h3>
-          <div><?php echo $posts[$counter]['bp_desc'];?></div>
-          <h4><span class="label label-info"><?php echo $posts[$counter]['cat_title']; ?></span></h4><h4>
-          <small class="text-muted"><span class="fa fa-clock-o"></span> <?php echo date("d M Y",strtotime($posts[$counter]['bp_date']));?> • <a href='posts/<?php echo $posts[$counter]['bp_slug'];?>' class="text-muted">Read More</a></small>
-          </h4>
-        </div>
-        <?php if(($counter + 1) < $count)
-        {?>
-          <div class="col-sm-12"><hr/></div>
-        <?php
-        }
-        ?>
-      </div>
-      <?php
-      $counter++;
-    }
-    ?>
-    <!-- /anything until here-->
+<!--<h3>About myself:</h3>-->
 
-    <!-- display links and footer -->
-    <?php
-    include_once('includes/display_links.php');
-    include_once('includes/div_footer.php');
-    ?>
-    
-    </div><!-- /col-9 -->
-  </div><!-- /padding -->
-</div>
-<!-- /main -->
+<h3><a class="h1_link" href="blog.php">Blog</a></h3> <!-- redirect to a page called megacolorboy.com/blog -->
+
+
+<h3>Areas of Interest and Research</h3>
+<ul style="list-style-type:square;">
+  <li>Algorithms/Data Structures/Mathematics &#8594; [<a href="#">View projects</a>]</li>
+  <li>Systems and Network Programming</li>
+  <li>Graphics Programming</li>
+  <li>Databases</li>
+  <li>Web/Mobile Development</li>
+  <li>Cryptography and Security Programming</li>
+  <li>Artificial Intelligence</li>
+  <li>Game Development</li>
+</ul>
+
+<!-- redirect to a page with solutions called megacolorboy.com/solutions -->
+<h3>Competitive Programming Solutions</h3>
+<ul style="list-style-type:square;">
+  <li>Project Euler</li>
+  <li>CoderByte</li>
+  <li>CodeEval</li>
+  <li>CodeAbbey</li>
+  <li>LeetCode</li>
+</ul>
+
+<h3>Links</h3>
 <?php
-//Page hits update
-mysqli_query($conn, "UPDATE page_count SET pg_cnt_val=(pg_cnt_val+1) WHERE pg_cnt_name = 'hits'");
+  for($i=0;$i<count($links);$i++)
+  { ?>
+      [<a href="<?php echo $links[$i]['link_url'];?>"><?php echo $links[$i]['link_title'];?></a>]
+ <?php }
+?>
+</ul>
+
+<h3><a class="h1_link" href="#">Resume</a></h3>
+
+<h3>Contact</h3>
+<p>E-mail: <a href="mailto:abdushshakoor1992@hotmail.com">abdushshakoor1992@hotmail.com</a> [I will try my best to reply ASAP !]</p>
+<?php
 include_once('includes/footer.php');
 ?>
